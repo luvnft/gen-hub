@@ -1,5 +1,9 @@
+import ScrollToTop from "@/components/common/scroll-to-top";
+import { ThemeProvider } from "@/components/theme/theme-context";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,9 +29,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          `dark:bg-background-dark text-text dark:text-text-dark bg-background antialiased`,
+          geistSans.variable,
+          geistMono.variable,
+        )}
       >
-        {children}
+        <ThemeProvider>
+          <ScrollToTop />
+          <Toaster closeButton richColors position="top-left" />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
