@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (e.target === e.currentTarget) onClose();
     },
-    [onClose],
+    [onClose]
   );
 
   return ReactDOM.createPortal(
@@ -58,7 +58,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         </motion.div>
       )}
     </AnimatePresence>,
-    document.body,
+    document.body
   );
 };
 

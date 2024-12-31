@@ -38,7 +38,7 @@ const SkeletonImage: React.FC<SkeletonImageProps> = ({
       className={cn(
         `overflow-hidden bg-[#ccc] shadow-sm`,
         pulsing ? "animate-pulse" : "",
-        className,
+        className
       )}
       style={{ width }}
     >

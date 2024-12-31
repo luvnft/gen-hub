@@ -30,9 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `dark:bg-background-dark text-text dark:text-text-dark bg-background antialiased`,
+          `bg-background text-text antialiased dark:bg-background-dark dark:text-text-dark`,
           geistSans.variable,
-          geistMono.variable,
+          geistMono.variable
         )}
       >
         <ThemeProvider>

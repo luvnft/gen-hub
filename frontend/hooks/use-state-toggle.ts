@@ -1,4 +1,5 @@
 "use client";
+
 import { useCallback, useMemo, useState } from "react";
 
 const useToggle = (initialState: boolean = false) => {
@@ -10,7 +11,7 @@ const useToggle = (initialState: boolean = false) => {
 
   const handlers = useMemo(
     () => ({ toggle, open, close }),
-    [toggle, open, close],
+    [toggle, open, close]
   );
 
   return { isOpen, ...handlers };

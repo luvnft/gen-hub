@@ -16,7 +16,7 @@ const Sidebar: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (e.target === e.currentTarget) onClose();
     },
-    [onClose],
+    [onClose]
   );
 
   return ReactDOM.createPortal(
@@ -41,7 +41,7 @@ const Sidebar: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
               transition={{ duration: 0.5, type: "spring", ease: "easeOut" }}
-              className="dark:bg-background-dark relative flex h-fit w-[250px] items-center justify-center rounded bg-background shadow-lg"
+              className="relative flex h-fit w-[250px] items-center justify-center rounded bg-background shadow-lg dark:bg-background-dark"
             >
               {children}
             </motion.div>
@@ -49,7 +49,7 @@ const Sidebar: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         </motion.div>
       )}
     </AnimatePresence>,
-    document.body,
+    document.body
   );
 };
 
