@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
+import { ThirdwebProvider } from "thirdweb/react";
 import "./globals.scss";
 
 const geistSans = Geist({
@@ -26,6 +27,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (process.env.NODE_ENV === "production") {
+    console.log = () => {};
+  }
   return (
     <html lang="en">
       <body
@@ -38,7 +42,7 @@ export default function RootLayout({
         <ThemeProvider>
           <ScrollToTop />
           <Toaster closeButton richColors position="top-left" />
-          {children}
+          <ThirdwebProvider>{children}</ThirdwebProvider>
         </ThemeProvider>
       </body>
     </html>
