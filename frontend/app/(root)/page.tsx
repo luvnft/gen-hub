@@ -7,10 +7,6 @@ export default function Page() {
       <div className="mb-20 flex justify-center">
         <ConnectButton
           client={client}
-          appMetadata={{
-            name: "Example App",
-            url: "https://example.com",
-          }}
         />
       </div>
     </div>

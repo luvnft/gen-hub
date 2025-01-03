@@ -4,9 +4,7 @@ import { createThirdwebClient } from "thirdweb";
 // refer to https://portal.thirdweb.com/typescript/v5/client on how to get a client ID
 const clientId = process.env.NEXT_THIRDWEB_SECRET_API;
 
-if (!clientId) {
-  throw new Error("No client ID provided");
-}
+if (!clientId) throw new Error("No client ID provided");
 
 export const client = createThirdwebClient({
   clientId: clientId,
