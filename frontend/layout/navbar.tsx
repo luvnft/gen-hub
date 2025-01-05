@@ -4,8 +4,10 @@ import ThemeSwitcher from "@/components/theme/theme-switcher";
 import Sidebar from "@/components/ui/sidebar";
 import SkeletonImage from "@/components/ui/skeleton-image";
 import useToggle from "@/hooks/use-state-toggle";
+import { client } from "@/lib/client";
 import { ArrowRight, Menu } from "lucide-react";
 import Link from "next/link";
+import { ConnectButton } from "thirdweb/react";
 
 const Navbar = () => {
   const sidebar = useToggle();
@@ -23,15 +25,17 @@ const Navbar = () => {
               isPriority
             />
           </Link>
-          <div
-            className="group relative flex h-[35px] w-10 cursor-pointer items-center justify-center rounded-lg border border-nav bg-nav transition-colors ease-out hover:border-sky-500 dark:border-nav-dark dark:bg-nav-dark dark:hover:border-sky-500"
-            onClick={sidebar.toggle}
-          >
-            <span className="absolute inset-0 -z-10 h-full w-full rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[8px]" />
-            <span className="relative">
-              <Menu size={18} />
-            </span>
-          </div>
+
+            <div
+              className="group relative flex h-[35px] w-10 cursor-pointer items-center justify-center rounded-lg border border-nav bg-nav transition-colors ease-out hover:border-sky-500 dark:border-nav-dark dark:bg-nav-dark dark:hover:border-sky-500"
+              onClick={sidebar.toggle}
+            >
+              <span className="absolute inset-0 -z-10 h-full w-full rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[8px]" />
+              <span className="relative">
+                <Menu size={18} />
+              </span>
+            </div>
+
         </div>
       </div>
       <Sidebar isOpen={sidebar.isOpen} onClose={sidebar.close}>

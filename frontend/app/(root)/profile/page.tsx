@@ -1,10 +1,8 @@
-'use client'
+"use client";
 
-import { client } from "@/lib/client";
-import { useActiveAccount, useWalletBalance } from "thirdweb/react";
+import { useActiveAccount } from "thirdweb/react";
 
 export default function App() {
-
   // console.log(client)
   // This is the chain your dApp will work on.
   // Change this to the chain your app is built for.
@@ -30,6 +28,8 @@ export default function App() {
   };
 
   const account = useActiveAccount();
+
+  // if (!account) redirect("/");
   // const { data: balance, isLoading } = useWalletBalance({
   //   client : client,
   //   chain: customChain,
