@@ -3,6 +3,7 @@ import Navbar from "@/layout/navbar";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import BackToTop from "@/components/common/back-to-top";
+import Footer from "@/layout/footer";
 
 export default function DashboardLayout({
   children,
@@ -26,6 +27,7 @@ export default function DashboardLayout({
           <div className="container my-10">{children}</div>
         </motion.div>
       </div>
+      <Footer />
     </>
   );
 }

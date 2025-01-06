@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useDropzone } from "react-dropzone";
-import { Upload } from "lucide-react";
+import { Upload, X } from "lucide-react";
 
 const mainVariant = {
   initial: {
@@ -54,7 +54,15 @@ export const FileUpload = ({
   });
 
   return (
-    <div className="w-full" {...getRootProps()}>
+    <div className="relative w-full" {...getRootProps()}>
+      {file && (
+        <div
+          onClick={() => setFile(null)}
+          className="absolute right-0 top-0 z-50 flex h-8 w-8 cursor-pointer items-center justify-center"
+        >
+          <X className="h-6 w-6 text-black dark:text-white" />
+        </div>
+      )}
       <motion.div
         onClick={handleClick}
         whileHover="animate"

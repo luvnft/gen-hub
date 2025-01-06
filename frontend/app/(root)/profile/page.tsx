@@ -10,6 +10,7 @@ export default function App() {
   // This is the chain your dApp will work on.
   // Change this to the chain your app is built for.
   // You can also import additional chains from `@thirdweb-dev/chains` and pass them directly.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const customChain = {
     // Required information for connecting to the network
     id: 2125031, // Chain ID of the network
