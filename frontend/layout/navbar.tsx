@@ -14,8 +14,8 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed z-50 h-[66px] w-full border-b border-border bg-background px-5 py-4 text-text transition-colors duration-300 ease-out dark:border-border-dark dark:bg-background-dark dark:text-text-dark">
-        <div className="container flex w-full justify-between">
+      <div className="fixed z-50 h-[82px] w-full border-b border-border bg-background px-5 py-4 text-text transition-colors duration-300 ease-out dark:border-border-dark dark:bg-background-dark dark:text-text-dark">
+        <div className="container flex w-full items-center justify-between">
           <Link href="/">
             <SkeletonImage
               src="/logo.png"
@@ -25,7 +25,8 @@ const Navbar = () => {
               isPriority
             />
           </Link>
-
+          <div className="flex items-center gap-4">
+            <ConnectButton client={client} />
             <div
               className="group relative flex h-[35px] w-10 cursor-pointer items-center justify-center rounded-lg border border-nav bg-nav transition-colors ease-out hover:border-sky-500 dark:border-nav-dark dark:bg-nav-dark dark:hover:border-sky-500"
               onClick={sidebar.toggle}
@@ -35,7 +36,7 @@ const Navbar = () => {
                 <Menu size={18} />
               </span>
             </div>
-
+          </div>
         </div>
       </div>
       <Sidebar isOpen={sidebar.isOpen} onClose={sidebar.close}>
@@ -67,6 +68,20 @@ const Navbar = () => {
                       <div className="flex items-center gap-2.5 text-link">
                         <ArrowRight size={22} strokeWidth={1} />
                         <p>Home</p>
+                      </div>
+                    </Link>
+                  </div>
+                  <div
+                    className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
+                    onClick={sidebar.close}
+                  >
+                    <Link
+                      href="/profile"
+                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                    >
+                      <div className="flex items-center gap-2.5 text-link">
+                        <ArrowRight size={22} strokeWidth={1} />
+                        <p>Profile</p>
                       </div>
                     </Link>
                   </div>

@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 interface ModalProps {
@@ -19,6 +19,18 @@ const Sidebar: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     [onClose]
   );
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   return ReactDOM.createPortal(
     <AnimatePresence>
       {isOpen && (
@@ -33,7 +45,7 @@ const Sidebar: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           className="fixed inset-0 z-40 bg-black/80 px-5 backdrop-blur-md"
         >
           <div
-            className="container mt-[80px] flex h-full w-full justify-end"
+            className="container mt-[96px] flex h-full w-full justify-end"
             onClick={handleBackdropClick}
           >
             <motion.div

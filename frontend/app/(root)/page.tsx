@@ -5,9 +5,7 @@ export default function Page() {
   return (
     <div className="py-20">
       <div className="mb-20 flex justify-center">
-        <ConnectButton
-          client={client}
-        />
+        <ConnectButton client={client} />
       </div>
     </div>
   );
