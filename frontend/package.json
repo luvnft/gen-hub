@@ -27,6 +27,7 @@
     "postcss": "^8",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
+    "react-dropzone": "^14.3.5",
     "sass": "^1.83.0",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.5",

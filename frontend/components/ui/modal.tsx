@@ -1,7 +1,7 @@
 "use client";
 
-import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { X } from "lucide-react";
 import dynamic from "next/dynamic";
 import React, { useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
@@ -21,11 +21,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   );
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    isOpen
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "");
 
     return () => {
       document.body.style.overflow = "";

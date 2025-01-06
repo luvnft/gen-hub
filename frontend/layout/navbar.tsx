@@ -19,8 +19,8 @@ const Navbar = () => {
           <Link href="/">
             <SkeletonImage
               src="/logo.png"
-              width="35px"
-              height="35px"
+              width="40px"
+              height="40px"
               className="aspect-square rounded-full"
               isPriority
             />
@@ -82,6 +82,20 @@ const Navbar = () => {
                       <div className="flex items-center gap-2.5 text-link">
                         <ArrowRight size={22} strokeWidth={1} />
                         <p>Profile</p>
+                      </div>
+                    </Link>
+                  </div>
+                  <div
+                    className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
+                    onClick={sidebar.close}
+                  >
+                    <Link
+                      href="/profile/create"
+                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                    >
+                      <div className="flex items-center gap-2.5 text-link">
+                        <ArrowRight size={22} strokeWidth={1} />
+                        <p>Create</p>
                       </div>
                     </Link>
                   </div>

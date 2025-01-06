@@ -10,7 +10,6 @@ body {
   position: static !important;
 }
 
-
 html::-webkit-scrollbar {
   display: none;
 }
@@ -18,4 +17,9 @@ html::-webkit-scrollbar {
 html {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+::selection {
+  background-color: rgb(143, 199, 255);
+  color: white;
 }
