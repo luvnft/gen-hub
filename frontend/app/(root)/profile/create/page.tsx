@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FileUpload } from "@/components/ui/file-upload";
+import ButtonGradiant from "@/components/ui/button-gradiant";
 
 export default function Page() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -61,6 +62,7 @@ export default function Page() {
             </div>
             <p className="mt-3 text-sm/6">Write a few description about.</p>
           </div>
+          <ButtonGradiant text="Mint NFT" />
         </form>
       </div>
     </div>

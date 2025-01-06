@@ -1,8 +1,9 @@
-import { cn } from "@/lib/utils";
 import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { useDropzone } from "react-dropzone";
+import { motion } from "framer-motion";
 import { Upload, X } from "lucide-react";
+import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 const mainVariant = {
   initial: {
@@ -35,9 +36,17 @@ export const FileUpload = ({
 
   const handleFileChange = (newFiles: File[]) => {
     const newFile = newFiles[0];
-    setFile(newFile);
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    onChange && onChange(newFile);
+    const acceptedTypes = ["image/*", "audio/*"];
+
+    if (
+      acceptedTypes.some((type) => newFile.type.startsWith(type.split("/")[0]))
+    ) {
+      setFile(newFile);
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      onChange && onChange(newFile);
+    } else {
+      toast.error("Only image and audio files are accepted.");
+    }
   };
 
   const handleClick = () => {
@@ -49,7 +58,7 @@ export const FileUpload = ({
     noClick: true,
     onDrop: handleFileChange,
     onDropRejected: (error) => {
-      console.log(error);
+      toast.error(`${error[0].errors[0].message}`);
     },
   });
 

@@ -15,23 +15,23 @@
     "thirdweb": "^5.80.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@eslint/eslintrc": "^3.2.0",
+    "@types/node": "^20.17.12",
+    "@types/react": "^19.0.3",
+    "@types/react-dom": "^19.0.2",
     "clsx": "^2.1.1",
-    "eslint": "^9",
+    "eslint": "^9.17.0",
     "eslint-config-next": "15.1.1",
-    "framer-motion": "^11.15.0",
+    "framer-motion": "^11.16.0",
     "lucide-react": "^0.468.0",
-    "postcss": "^8",
+    "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "react-dropzone": "^14.3.5",
-    "sass": "^1.83.0",
+    "sass": "^1.83.1",
     "sonner": "^1.7.1",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2"
   }
 }
