@@ -24,7 +24,7 @@ export default function DashboardLayout({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="min-h-[calc(100vh-82px)] px-5"
+          className="min-h-[calc(100vh-66px)] px-5"
         >
           <div className="container my-10">{children}</div>
         </motion.div>

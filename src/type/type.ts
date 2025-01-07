@@ -5,3 +5,7 @@ export interface CardProps {
   volume: string;
   [key: string]: unknown;
 }
+
+export type ThirdwebButtonProps = {
+  type?: "icon" | "text";
+};

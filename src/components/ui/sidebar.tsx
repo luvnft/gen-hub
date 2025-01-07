@@ -42,7 +42,7 @@ const Sidebar: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           className="fixed inset-0 z-40 bg-black/80 px-5 backdrop-blur-md"
         >
           <div
-            className="container mt-[96px] flex h-full w-full justify-end"
+            className="container mt-[80px] flex h-full w-full justify-end"
             onClick={handleBackdropClick}
           >
             <motion.div

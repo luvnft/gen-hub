@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import Loading from "@/components/common/loading";
 import Card from "@/components/ui/card";
 
-export default function App() {
+export default function Page() {
   // console.log(client)
   // This is the chain your dApp will work on.
   // Change this to the chain your app is built for.
@@ -31,13 +31,14 @@ export default function App() {
     name: "Bubs Sepolia", // Name of the network
   };
 
-  const account = useActiveAccount();
-
   // const { data: balance, isLoading } = useWalletBalance({
   //   client : client,
   //   chain,
   //   address: account?.address,
   // });
+
+  const account = useActiveAccount();
+  console.log(account?.address);
 
   return (
     <div>

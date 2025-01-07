@@ -15,19 +15,21 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed z-50 h-[82px] w-full border-b border-border bg-background px-5 py-4 text-text transition-colors duration-300 ease-out dark:border-border-dark dark:bg-background-dark dark:text-text-dark">
+      <div className="fixed z-50 h-[66px] w-full border-b border-border bg-background px-5 py-4 text-text transition-colors duration-300 ease-out dark:border-border-dark dark:bg-background-dark dark:text-text-dark">
         <div className="container flex w-full items-center justify-between">
           <Link href="/">
             <SkeletonImage
               src="/logo.png"
-              width="40px"
-              height="40px"
+              width="35px"
+              height="35px"
               className="aspect-square rounded-full"
               isPriority
             />
           </Link>
           <div className="flex items-center gap-4">
-            <ConnectButton client={client} />
+            <div className="sr-only">
+              <ConnectButton client={client} />
+            </div>
             <div
               className="group relative flex h-[35px] w-10 cursor-pointer items-center justify-center rounded-lg border border-nav bg-nav transition-colors ease-out hover:border-sky-500 dark:border-nav-dark dark:bg-nav-dark dark:hover:border-sky-500"
               onClick={sidebar.toggle}
@@ -128,7 +130,7 @@ const Navbar = () => {
                         onClick={sidebar.close}
                       >
                         <Link
-                          href="/profile/create"
+                          href="/create"
                           className="w-full p-2.5 pl-0 transition-colors"
                         >
                           <div className="flex items-center gap-2.5">
