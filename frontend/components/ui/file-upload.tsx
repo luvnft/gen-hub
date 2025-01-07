@@ -44,22 +44,16 @@ export const FileUpload = ({
       setFile(newFile);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       onChange && onChange(newFile);
-    } else {
-      toast.error("Only image and audio files are accepted.");
-    }
+    } else toast.error("Only image and audio files are accepted.");
   };
 
-  const handleClick = () => {
-    fileInputRef.current?.click();
-  };
+  const handleClick = () => fileInputRef.current?.click();
 
   const { getRootProps, isDragActive } = useDropzone({
     multiple: false,
     noClick: true,
     onDrop: handleFileChange,
-    onDropRejected: (error) => {
-      toast.error(`${error[0].errors[0].message}`);
-    },
+    onDropRejected: (error) => toast.error(`${error[0].errors[0].message}`),
   });
 
   return (

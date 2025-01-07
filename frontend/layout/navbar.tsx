@@ -7,10 +7,11 @@ import useToggle from "@/hooks/use-state-toggle";
 import { client } from "@/lib/client";
 import { ArrowRight, Menu } from "lucide-react";
 import Link from "next/link";
-import { ConnectButton } from "thirdweb/react";
+import { ConnectButton, useActiveAccount } from "thirdweb/react";
 
 const Navbar = () => {
   const sidebar = useToggle();
+  const account = useActiveAccount();
 
   return (
     <>
@@ -71,34 +72,38 @@ const Navbar = () => {
                       </div>
                     </Link>
                   </div>
-                  <div
-                    className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                    onClick={sidebar.close}
-                  >
-                    <Link
-                      href="/profile"
-                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
-                    >
-                      <div className="flex items-center gap-2.5 text-link">
-                        <ArrowRight size={22} strokeWidth={1} />
-                        <p>Profile</p>
+                  {account && (
+                    <>
+                      <div
+                        className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
+                        onClick={sidebar.close}
+                      >
+                        <Link
+                          href="/profile"
+                          className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                        >
+                          <div className="flex items-center gap-2.5 text-link">
+                            <ArrowRight size={22} strokeWidth={1} />
+                            <p>Profile</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
-                  <div
-                    className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                    onClick={sidebar.close}
-                  >
-                    <Link
-                      href="/profile/create"
-                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
-                    >
-                      <div className="flex items-center gap-2.5 text-link">
-                        <ArrowRight size={22} strokeWidth={1} />
-                        <p>Create</p>
+                      <div
+                        className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
+                        onClick={sidebar.close}
+                      >
+                        <Link
+                          href="/profile/create"
+                          className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                        >
+                          <div className="flex items-center gap-2.5 text-link">
+                            <ArrowRight size={22} strokeWidth={1} />
+                            <p>Create</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
+                    </>
+                  )}
                 </>
               ),
             },

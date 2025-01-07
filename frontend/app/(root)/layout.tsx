@@ -1,9 +1,11 @@
 "use client";
+
 import Navbar from "@/layout/navbar";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import BackToTop from "@/components/common/back-to-top";
 import Footer from "@/layout/footer";
+import React from "react";
 
 export default function DashboardLayout({
   children,

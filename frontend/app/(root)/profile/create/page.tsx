@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { FileUpload } from "@/components/ui/file-upload";
 import ButtonGradiant from "@/components/ui/button-gradiant";
+import Loading from "@/components/common/loading";
 
 export default function Page() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -20,9 +21,11 @@ export default function Page() {
           Once your item is minted you will not be able to change any of its
           information.
         </p>
-        <div className="mx-auto w-full max-w-5xl gap-4 rounded-lg border border-dashed border-border bg-white dark:border-neutral-800 dark:bg-black">
-          <FileUpload onChange={handleFileUpload} />
-        </div>
+        <Suspense fallback={<Loading />}>
+          <div className="mx-auto w-full max-w-5xl gap-4 rounded-lg border border-dashed border-border bg-white dark:border-neutral-800 dark:bg-black">
+            <FileUpload onChange={handleFileUpload} />
+          </div>
+        </Suspense>
         <form className="flex flex-col gap-4">
           <div className="sm:col-span-1">
             <label

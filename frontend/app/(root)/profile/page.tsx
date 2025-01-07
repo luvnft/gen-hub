@@ -1,9 +1,9 @@
 "use client";
 
 import { useActiveAccount } from "thirdweb/react";
-import { Suspense, useEffect } from "react";
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import Loading from "@/components/common/loading";
+import Card from "@/components/ui/card";
 
 export default function App() {
   // console.log(client)
@@ -33,10 +33,6 @@ export default function App() {
 
   const account = useActiveAccount();
 
-  useEffect(() => {
-    if (!account) redirect("/");
-  }, [account]);
-
   // const { data: balance, isLoading } = useWalletBalance({
   //   client : client,
   //   chain: customChain,
@@ -46,8 +42,12 @@ export default function App() {
   return (
     <div>
       <Suspense fallback={<Loading />}>
-        <p>Wallet address: {account?.address}</p>
+        <p className="break-words">Wallet address: {account?.address}</p>
       </Suspense>
+      <div className="grid gap-4 pt-8 sm:grid-cols-5">
+        <Card title={"bla bla"} image={""} floor={"a"} volume={"b"} />
+      </div>
+
       {/* <p>*/}
       {/*  Wallet balance: {balance?.displayValue} {balance?.symbol}*/}
       {/*</p> */}
