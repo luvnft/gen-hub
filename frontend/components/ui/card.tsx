@@ -25,11 +25,11 @@ const Card: React.FC<CardProps> = ({
         <div className="flex items-center justify-between px-4 font-bold">
           <div className="flex flex-col gap-1">
             <p className="text-sm text-gray-500">Floor</p>
-            <p className="text-md font-medium hover:underline">{floor}</p>
+            <p className="text-md font-medium">{floor}</p>
           </div>
           <div className="flex flex-col gap-1">
             <p className="text-sm text-gray-500">Volume</p>
-            <p className="text-md font-medium hover:underline">{volume}</p>
+            <p className="text-md font-medium">{volume}</p>
           </div>
         </div>
       </div>

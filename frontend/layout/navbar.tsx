@@ -5,7 +5,7 @@ import Sidebar from "@/components/ui/sidebar";
 import SkeletonImage from "@/components/ui/skeleton-image";
 import useToggle from "@/hooks/use-state-toggle";
 import { client } from "@/lib/client";
-import { ArrowRight, Menu } from "lucide-react";
+import { ArrowRight, Menu, Plus, User2Icon } from "lucide-react";
 import Link from "next/link";
 import { ConnectButton, useActiveAccount } from "thirdweb/react";
 
@@ -72,7 +72,42 @@ const Navbar = () => {
                       </div>
                     </Link>
                   </div>
-                  {account && (
+                  <div
+                    className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
+                    onClick={sidebar.close}
+                  >
+                    <Link
+                      href="/buy"
+                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                    >
+                      <div className="flex items-center gap-2.5 text-link">
+                        <ArrowRight size={22} strokeWidth={1} />
+                        <p>Buy NFT</p>
+                      </div>
+                    </Link>
+                  </div>
+                  <div
+                    className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
+                    onClick={sidebar.close}
+                  >
+                    <Link
+                      href="/sell"
+                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                    >
+                      <div className="flex items-center gap-2.5 text-link">
+                        <ArrowRight size={22} strokeWidth={1} />
+                        <p>Sell NFT</p>
+                      </div>
+                    </Link>
+                  </div>
+                </>
+              ),
+            },
+            {
+              title: "Account",
+              content: (
+                <>
+                  {account ? (
                     <>
                       <div
                         className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
@@ -80,10 +115,10 @@ const Navbar = () => {
                       >
                         <Link
                           href="/profile"
-                          className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                          className="w-full p-2.5 pl-0 transition-colors"
                         >
-                          <div className="flex items-center gap-2.5 text-link">
-                            <ArrowRight size={22} strokeWidth={1} />
+                          <div className="flex items-center gap-2.5">
+                            <User2Icon size={22} strokeWidth={1} />
                             <p>Profile</p>
                           </div>
                         </Link>
@@ -94,15 +129,17 @@ const Navbar = () => {
                       >
                         <Link
                           href="/profile/create"
-                          className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                          className="w-full p-2.5 pl-0 transition-colors"
                         >
-                          <div className="flex items-center gap-2.5 text-link">
-                            <ArrowRight size={22} strokeWidth={1} />
+                          <div className="flex items-center gap-2.5">
+                            <Plus size={22} strokeWidth={1} />
                             <p>Create</p>
                           </div>
                         </Link>
                       </div>
                     </>
+                  ) : (
+                    <p className="p-2.5 pl-6">Login to continue</p>
                   )}
                 </>
               ),
@@ -120,5 +157,4 @@ const Navbar = () => {
     </>
   );
 };
-
 export default Navbar;

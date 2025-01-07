@@ -35,7 +35,7 @@ export default function App() {
 
   // const { data: balance, isLoading } = useWalletBalance({
   //   client : client,
-  //   chain: customChain,
+  //   chain,
   //   address: account?.address,
   // });
 
@@ -48,9 +48,9 @@ export default function App() {
         <Card title={"bla bla"} image={""} floor={"a"} volume={"b"} />
       </div>
 
-      {/* <p>*/}
+      {/*<p>*/}
       {/*  Wallet balance: {balance?.displayValue} {balance?.symbol}*/}
-      {/*</p> */}
+      {/*</p>*/}
     </div>
   );
 }

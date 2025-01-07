@@ -59,12 +59,19 @@ export const FileUpload = ({
   return (
     <div className="relative w-full" {...getRootProps()}>
       {file && (
-        <div
-          onClick={() => setFile(null)}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => {
+            setFile(null);
+            if (fileInputRef.current) {
+              fileInputRef.current.value = "";
+            }
+          }}
           className="absolute right-0 top-0 z-50 flex h-8 w-8 cursor-pointer items-center justify-center"
         >
           <X className="h-6 w-6 text-black dark:text-white" />
-        </div>
+        </motion.div>
       )}
       <motion.div
         onClick={handleClick}

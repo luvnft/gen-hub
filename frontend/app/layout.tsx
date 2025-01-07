@@ -6,6 +6,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { ThirdwebProvider } from "thirdweb/react";
 import "./globals.scss";
+import React from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `bg-background text-text antialiased dark:bg-background-dark dark:text-text-dark`,
+          `bg-background text-text antialiased transition-colors duration-300 ease-out dark:bg-background-dark dark:text-text-dark`,
           geistSans.variable,
           geistMono.variable
         )}
