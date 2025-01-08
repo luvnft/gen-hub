@@ -33,7 +33,7 @@ const NetworkSwitcher: React.FC<ThirdwebButtonProps> = ({ type = "text" }) => {
 
   return (
     <>
-      {type == "text" ? (
+      {type === "text" ? (
         <button onClick={handleClick}>Switch Network</button>
       ) : (
         <></>

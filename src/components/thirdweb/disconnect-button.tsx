@@ -21,7 +21,7 @@ const DisconnectButton: React.FC<ThirdwebButtonProps> = ({ type = "text" }) => {
 
   return (
     <>
-      {type == "text" ? (
+      {type === "text" ? (
         <button onClick={handleDisconnect}>Disconnect</button>
       ) : (
         <></>

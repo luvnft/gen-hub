@@ -4,14 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import React, { useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
+import { DialogProps } from "@/type/type";
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-}
-
-const Sidebar: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Sidebar: React.FC<DialogProps> = ({ isOpen, onClose, children }) => {
   const handleBackdropClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (e.target === e.currentTarget) onClose();
