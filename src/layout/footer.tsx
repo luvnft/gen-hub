@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div className="mt-8 border-t py-8 dark:border-border-dark">
+    <div className="border-t py-8 dark:border-border-dark">
       <div className="px-5">
         <div className="container flex items-center justify-between">
           <span className="text-sm/6">

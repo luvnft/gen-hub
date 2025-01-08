@@ -40,7 +40,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <h1 className="text-center text-3xl font-bold">Connect Wallet</h1>
           <p>Please connect your wallet to continue.</p>
-          <ConnectButton className="bg-border" />
+          <ConnectButton className="bg-border dark:bg-border-dark" />
         </div>
       </Dialog>
     </>

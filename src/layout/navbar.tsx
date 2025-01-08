@@ -8,6 +8,8 @@ import { ArrowRight, Menu, Plus, User2Icon } from "lucide-react";
 import Link from "next/link";
 import { ConnectButton, useActiveAccount } from "thirdweb/react";
 import Dialog from "@/components/ui/dialog";
+import DisconnectButton from "@/components/thirdweb/disconnect-button";
+import CustomConnectButton from "@/components/thirdweb/connect-button";
 
 const Navbar = () => {
   const sidebar = useToggle();
@@ -139,9 +141,14 @@ const Navbar = () => {
                           </div>
                         </Link>
                       </div>
+                      <div onClick={sidebar.close}>
+                        <DisconnectButton className="ml-0.5 pl-3" />
+                      </div>
                     </>
                   ) : (
-                    <p className="p-2.5 pl-6">Login to continue</p>
+                    <div onClick={sidebar.close}>
+                      <CustomConnectButton className="ml-0.5 pl-3" />
+                    </div>
                   )}
                 </>
               ),

@@ -1,7 +1,14 @@
-import React from "react";
 import SkeletonImage from "@/components/ui/skeleton-image";
 import Link from "next/link";
-import { CardProps } from "@/type/type";
+import React from "react";
+
+interface CardProps {
+  title: string;
+  image: string;
+  floor: string;
+  volume: string;
+  [key: string]: unknown;
+}
 
 const Card: React.FC<CardProps> = ({
   title,

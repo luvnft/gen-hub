@@ -13,7 +13,7 @@ const ConnectButton: React.FC<ThirdwebButtonProps> = ({
   className,
   ...props
 }) => {
-  const { connect, isConnecting } = useConnectModal();
+  const { connect } = useConnectModal();
 
   const handleConnect = async () => {
     const wallet = await connect({
@@ -26,6 +26,10 @@ const ConnectButton: React.FC<ThirdwebButtonProps> = ({
           "https://github.com/Axyl1410/Generative-Hub-App/blob/main/src/public/logo.png",
       },
       showThirdwebBranding: false,
+      welcomeScreen: {
+        title: "Generative Hub App",
+        subtitle: "Generative Hub App: Powered by Forma NFTs",
+      },
     }); // opens the connect modal
     console.log("connected to", wallet);
     toast.success("Connected to wallet");
