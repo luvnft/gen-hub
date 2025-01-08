@@ -1,13 +1,13 @@
 "use client";
 
 import ThemeSwitcher from "@/components/theme/theme-switcher";
-import Sidebar from "@/components/ui/sidebar";
 import SkeletonImage from "@/components/ui/skeleton-image";
 import useToggle from "@/hooks/use-state-toggle";
 import { client } from "@/lib/client";
 import { ArrowRight, Menu, Plus, User2Icon } from "lucide-react";
 import Link from "next/link";
 import { ConnectButton, useActiveAccount } from "thirdweb/react";
+import Dialog from "@/components/ui/dialog";
 
 const Navbar = () => {
   const sidebar = useToggle();
@@ -42,7 +42,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <Sidebar isOpen={sidebar.isOpen} onClose={sidebar.close}>
+      <Dialog isOpen={sidebar.isOpen} onClose={sidebar.close} type="sidebar">
         <div className="flex w-full flex-col">
           {[
             {
@@ -155,7 +155,7 @@ const Navbar = () => {
             </div>
           ))}
         </div>
-      </Sidebar>
+      </Dialog>
     </>
   );
 };

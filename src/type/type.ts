@@ -10,10 +10,6 @@ export interface CardProps {
 
 export type ThirdwebButtonProps = {
   type?: "icon" | "text";
+  className?: string;
+  [key: string]: unknown;
 };
-
-export interface DialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-}

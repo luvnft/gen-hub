@@ -44,7 +44,7 @@ const SkeletonImage: React.FC<SkeletonImageProps> = ({
       style={{ width }}
     >
       <motion.div
-        initial={{ height: "0px", opacity: 0 }}
+        initial={{ height: height, opacity: 0 }}
         animate={{
           height: imageLoading ? height : "auto",
           opacity: imageLoading ? 0 : 1,

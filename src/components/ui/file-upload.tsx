@@ -37,6 +37,13 @@ export const FileUpload = ({
   const handleFileChange = (newFiles: File[]) => {
     const newFile = newFiles[0];
     const acceptedTypes = ["image/*", "audio/*"];
+    const maxSizeInMB = 50;
+    const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
+
+    if (newFile.size > maxSizeInBytes) {
+      toast.error(`File size exceeds ${maxSizeInMB}MB.`);
+      return;
+    }
 
     if (
       acceptedTypes.some((type) => newFile.type.startsWith(type.split("/")[0]))
