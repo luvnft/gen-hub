@@ -28,7 +28,7 @@ export default function Page() {
           </div>
           <BackButton className="h-fit" href="/create" />
         </div>
-        <div className="flex w-full flex-col gap-8 md:flex-row">
+        <div className="flex w-full flex-col gap-12 md:flex-row">
           <div className="flex-1">
             <Suspense fallback={<Loading />}>
               <div className="mx-auto w-full max-w-5xl gap-4 rounded-lg border border-dashed border-border bg-white dark:border-neutral-800 dark:bg-black">
@@ -42,12 +42,12 @@ export default function Page() {
               <div>
                 <label
                   htmlFor="collection"
-                  className="block text-sm/6 font-bold dark:text-text-dark"
+                  className="text-sm/6 font-bold dark:text-text-dark"
                 >
                   Collection*
                 </label>
-                <div className="mt-2 flex h-24 w-full cursor-not-allowed items-center gap-4 rounded-md bg-gray-100 p-4 shadow">
-                  <div className="grid h-16 w-16 place-items-center rounded-md bg-gray-200">
+                <div className="mt-2 flex h-24 w-full cursor-not-allowed items-center gap-4 rounded-md bg-gray-100 p-4 shadow dark:bg-gray-900">
+                  <div className="grid h-16 w-16 place-items-center rounded-md bg-gray-200 dark:bg-gray-800">
                     <Plus />
                   </div>
                   <p className="text-sm/6 font-bold">
@@ -61,10 +61,11 @@ export default function Page() {
                   </span>
                 </p>
               </div>
+
               <div>
                 <label
                   htmlFor="title"
-                  className="block text-sm/6 font-bold dark:text-text-dark"
+                  className="text-sm/6 font-bold dark:text-text-dark"
                 >
                   Name*
                 </label>
@@ -74,7 +75,27 @@ export default function Page() {
                     name="name"
                     id="name"
                     placeholder="Name your NFT"
-                    className="block w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
+                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="supply"
+                  className="text-sm/6 font-bold dark:text-text-dark"
+                >
+                  Supply*
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="supply"
+                    id="supply"
+                    placeholder="1"
+                    defaultValue={1}
+                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
                     required
                   />
                 </div>
@@ -83,7 +104,7 @@ export default function Page() {
               <div>
                 <label
                   htmlFor="description"
-                  className="block text-sm/6 font-bold text-gray-900 dark:text-text-dark"
+                  className="text-sm/6 font-bold text-gray-900 dark:text-text-dark"
                 >
                   Description*
                 </label>
@@ -92,7 +113,7 @@ export default function Page() {
                     name="description"
                     id="description"
                     rows={3}
-                    className="block w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
+                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
                     defaultValue={""}
                     required
                   />

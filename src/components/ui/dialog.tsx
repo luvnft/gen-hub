@@ -56,7 +56,7 @@ const Dialog: React.FC<DialogProps> = ({
                   animate={{ scale: 1 }}
                   exit={{ scale: 0.8 }}
                   transition={{ duration: 0.3, type: "spring" }}
-                  className="relative mx-4 flex items-center justify-center rounded border bg-background p-8 text-text shadow-lg dark:bg-black dark:text-white"
+                  className="relative mx-4 flex items-center justify-center rounded border bg-background p-8 text-text shadow-lg dark:bg-black dark:text-white md:max-w-[60vw]"
                 >
                   <button
                     onClick={onClose}
