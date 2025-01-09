@@ -10,33 +10,31 @@ import Dialog from "@/components/ui/dialog";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const account = useActiveAccount();
-  const modal = useToggle();
+  const dialog = useToggle();
 
   useEffect(() => {
-    if (account) modal.close();
-    else modal.open();
-  }, [account, modal]);
+    if (account) dialog.close();
+    else dialog.open();
+  }, [account, dialog]);
 
   return (
     <>
       {children}
       <Dialog
-        isOpen={modal.isOpen}
+        isOpen={dialog.isOpen}
         onClose={() => {
           if (!account) redirect("/");
-          else modal.close();
+          else dialog.close();
         }}
       >
         <div className="flex flex-col gap-2">
           <div className="grid w-full place-items-center">
-            <div className="h-[50px] w-[50px]">
-              <SkeletonImage
-                src={"/logo.png"}
-                height={"50px"}
-                width={"50px"}
-                className="rounded-full"
-              />
-            </div>
+            <SkeletonImage
+              src={"/logo.png"}
+              height={"50px"}
+              width={"50px"}
+              className="rounded-full"
+            />
           </div>
           <h1 className="text-center text-3xl font-bold">Connect Wallet</h1>
           <p>Please connect your wallet to continue.</p>

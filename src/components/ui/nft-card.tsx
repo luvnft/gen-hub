@@ -10,7 +10,7 @@ interface CardProps {
   [key: string]: unknown;
 }
 
-const Card: React.FC<CardProps> = ({
+const NftCard: React.FC<CardProps> = ({
   title,
   image,
   floor,
@@ -44,4 +44,4 @@ const Card: React.FC<CardProps> = ({
   );
 };
 
-export default Card;
+export default NftCard;

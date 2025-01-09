@@ -1,18 +1,43 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
+import { ArrowLeft } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface BackButtonProps {
-  children: React.ReactNode;
+  text?: string;
+  defaultRoute?: string;
+  className?: string;
+  href?: string;
   [key: string]: unknown;
 }
 
-const BackButton: React.FC<BackButtonProps> = ({ children, ...props }) => {
+const BackButton: React.FC<BackButtonProps> = ({
+  text = "Back",
+  defaultRoute = "/",
+  className,
+  href,
+  ...props
+}) => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const handleBackClick = () => {
+    const rootPath = "/";
+
+    if (pathname !== rootPath && window.history.length > 1) router.back();
+    else router.push(defaultRoute);
+  };
+
   return (
-    <button onClick={() => router.back()} {...props}>
-      {children}
+    <button
+      onClick={href ? () => router.push(href) : handleBackClick}
+      className={cn("flex items-center hover:underline", className)}
+      {...props}
+    >
+      <ArrowLeft size={16} />
+      <p>{text}</p>
     </button>
   );
 };

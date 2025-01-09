@@ -203,11 +203,11 @@ export function GridPattern() {
           return (
             <div
               key={`${col}-${row}`}
-              className={`flex h-10 w-10 flex-shrink-0 rounded-[2px] ${
-                index % 2 === 0
-                  ? "bg-gray-50 dark:bg-neutral-950"
-                  : "bg-gray-50 shadow-[0px_0px_1px_3px_rgba(255,255,255,1)_inset] dark:bg-neutral-950 dark:shadow-[0px_0px_1px_3px_rgba(0,0,0,1)_inset]"
-              }`}
+              className={cn(
+                "flex h-10 w-10 flex-shrink-0 rounded-[2px] bg-gray-50 dark:bg-neutral-950",
+                index % 2 === 0 &&
+                  "shadow-[0px_0px_1px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_1px_3px_rgba(0,0,0,1)_inset]"
+              )}
             />
           );
         })

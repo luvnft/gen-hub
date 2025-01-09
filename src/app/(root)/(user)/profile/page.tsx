@@ -3,7 +3,7 @@
 import { useActiveAccount } from "thirdweb/react";
 import { Suspense } from "react";
 import Loading from "@/components/common/loading";
-import Card from "@/components/ui/card";
+import NftCard from "@/components/ui/nft-card";
 
 export default function Page() {
   // console.log(client)
@@ -46,7 +46,7 @@ export default function Page() {
         <p className="break-words">Wallet address: {account?.address}</p>
       </Suspense>
       <div className="grid gap-4 pt-8 sm:grid-cols-5">
-        <Card title={"bla bla"} image={""} floor={"a"} volume={"b"} />
+        <NftCard title={"bla bla"} image={""} floor={"a"} volume={"b"} />
       </div>
 
       {/*<p>*/}

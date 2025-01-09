@@ -8,7 +8,7 @@ interface ButtonGradiantProps {
 const ButtonGradiant: React.FC<ButtonGradiantProps> = ({ text, ...props }) => {
   return (
     <button
-      className="group relative inline-block w-fit cursor-pointer rounded-full bg-slate-800 p-px text-sm font-semibold leading-6 text-white no-underline shadow-2xl shadow-zinc-900"
+      className="group relative inline-block w-fit rounded-full bg-slate-800 p-px text-sm font-semibold leading-6 text-white no-underline shadow-2xl shadow-zinc-900"
       {...props}
     >
       <span className="absolute inset-0 overflow-hidden rounded-full">

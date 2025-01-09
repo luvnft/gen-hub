@@ -12,7 +12,7 @@ import DisconnectButton from "@/components/thirdweb/disconnect-button";
 import CustomConnectButton from "@/components/thirdweb/connect-button";
 
 const Navbar = () => {
-  const sidebar = useToggle();
+  const dialog = useToggle();
   const account = useActiveAccount();
 
   return (
@@ -34,7 +34,7 @@ const Navbar = () => {
             </div>
             <div
               className="group relative flex h-[35px] w-10 cursor-pointer items-center justify-center rounded-lg border border-nav bg-nav transition-colors ease-out hover:border-sky-500 dark:border-nav-dark dark:bg-nav-dark dark:hover:border-sky-500"
-              onClick={sidebar.toggle}
+              onClick={dialog.toggle}
             >
               <span className="absolute inset-0 -z-10 h-full w-full rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[8px]" />
               <span className="relative">
@@ -44,7 +44,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <Dialog isOpen={sidebar.isOpen} onClose={sidebar.close} type="sidebar">
+      <Dialog isOpen={dialog.isOpen} onClose={dialog.close} type="sidebar">
         <div className="flex w-full flex-col">
           {[
             {
@@ -52,7 +52,7 @@ const Navbar = () => {
               content: (
                 <div
                   className="flex items-center gap-3.5 pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                  onClick={sidebar.close}
+                  onClick={dialog.close}
                 >
                   <ThemeSwitcher />
                 </div>
@@ -64,7 +64,7 @@ const Navbar = () => {
                 <>
                   <div
                     className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                    onClick={sidebar.close}
+                    onClick={dialog.close}
                   >
                     <Link
                       href="/"
@@ -78,11 +78,11 @@ const Navbar = () => {
                   </div>
                   <div
                     className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                    onClick={sidebar.close}
+                    onClick={dialog.close}
                   >
                     <Link
                       href="/buy"
-                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                      className="w-full cursor-not-allowed p-2.5 pl-0 transition-all ease-out hover:pl-2"
                     >
                       <div className="flex items-center gap-2.5 text-link">
                         <ArrowRight size={22} strokeWidth={1} />
@@ -92,11 +92,11 @@ const Navbar = () => {
                   </div>
                   <div
                     className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                    onClick={sidebar.close}
+                    onClick={dialog.close}
                   >
                     <Link
                       href="/sell"
-                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                      className="w-full cursor-not-allowed p-2.5 pl-0 transition-all ease-out hover:pl-2"
                     >
                       <div className="flex items-center gap-2.5 text-link">
                         <ArrowRight size={22} strokeWidth={1} />
@@ -115,7 +115,7 @@ const Navbar = () => {
                     <>
                       <div
                         className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                        onClick={sidebar.close}
+                        onClick={dialog.close}
                       >
                         <Link
                           href="/profile"
@@ -129,7 +129,7 @@ const Navbar = () => {
                       </div>
                       <div
                         className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                        onClick={sidebar.close}
+                        onClick={dialog.close}
                       >
                         <Link
                           href="/create"
@@ -141,12 +141,12 @@ const Navbar = () => {
                           </div>
                         </Link>
                       </div>
-                      <div onClick={sidebar.close}>
+                      <div onClick={dialog.close}>
                         <DisconnectButton className="ml-0.5 pl-3" />
                       </div>
                     </>
                   ) : (
-                    <div onClick={sidebar.close}>
+                    <div onClick={dialog.close}>
                       <CustomConnectButton className="ml-0.5 pl-3" />
                     </div>
                   )}
