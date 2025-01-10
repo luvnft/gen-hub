@@ -18,7 +18,7 @@ export default function DashboardLayout({
     <>
       <Navbar />
       <BackToTop />
-      <div className="mb-[60px] pt-[66px]">
+      <div className="pt-[66px]">
         <motion.div
           key={pathname}
           initial={{ opacity: 0 }}
@@ -29,7 +29,7 @@ export default function DashboardLayout({
           <div className="container my-10">{children}</div>
         </motion.div>
       </div>
-      <Footer />
+      {pathname !== "/create" && <Footer />}
     </>
   );
 }

@@ -1,6 +1,7 @@
 import ConnectButton from "@/components/thirdweb/connect-button";
 import DisconnectButton from "@/components/thirdweb/disconnect-button";
 import NetworkSwitcher from "@/components/thirdweb/network-switcher";
+import Loading from "@/components/common/loading";
 
 export default function Page() {
   return (
@@ -8,6 +9,7 @@ export default function Page() {
       <ConnectButton />
       <DisconnectButton />
       <NetworkSwitcher />
+      <Loading />
     </div>
   );
 }
