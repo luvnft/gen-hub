@@ -1,10 +1,12 @@
 const Footer = () => {
+  const currentYear: number = new Date().getFullYear();
+
   return (
     <div className="border-t py-8 dark:border-border-dark">
       <div className="px-5">
         <div className="container flex items-center justify-between">
           <span className="text-sm/6">
-            © 2025 Generative Hub App. All rights reserved.
+            © {currentYear} Generative Hub App. All rights reserved.
           </span>
           <a
             href="https://github.com/Axyl1410/Generative-Hub-App"

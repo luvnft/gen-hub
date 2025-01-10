@@ -46,8 +46,8 @@ export default function Page() {
                 >
                   Collection*
                 </label>
-                <div className="mt-2 flex h-24 w-full cursor-not-allowed items-center gap-4 rounded-md bg-gray-100 p-4 shadow dark:bg-gray-900">
-                  <div className="grid h-16 w-16 place-items-center rounded-md bg-gray-200 dark:bg-gray-800">
+                <div className="mt-2 flex h-24 w-full cursor-not-allowed items-center gap-4 rounded-md bg-gray-100 p-4 shadow dark:border dark:bg-neutral-900">
+                  <div className="grid h-16 w-16 place-items-center rounded-md bg-gray-200 dark:bg-neutral-800">
                     <Plus />
                   </div>
                   <p className="text-sm/6 font-bold">

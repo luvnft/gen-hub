@@ -30,7 +30,7 @@ export default function Page() {
     <div className="flex w-full justify-center">
       <div className="flex w-full flex-col">
         <BackButton href="/create" className="mb-8 w-fit" />
-        <div className="grid grid-cols-6 gap-12">
+        <div className="flex grid-cols-6 flex-col-reverse gap-12 md:grid">
           <div className="col-span-4 flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <h1 className="text-xl font-bold sm:text-3xl">
@@ -57,13 +57,13 @@ export default function Page() {
               <Dialog isOpen={logoInfo.isOpen} onClose={logoInfo.close}>
                 <DialogContent
                   title="Logo image"
-                  description="Your logo should be a representation of your items and will appear next to your collection name throughout OpenSea. You can change your logo even after you deploy your contract."
+                  description="Your logo should be a representation of your items and will appear next to your collection name throughout. You can change your logo even after you deploy your contract."
                   onClose={logoInfo.close}
                 />
               </Dialog>
             </div>
-            <div className="grid grid-cols-5 gap-4">
-              <div className="col-span-4">
+            <div className="grid gap-4 sm:grid-cols-5">
+              <div className="sm:col-span-3">
                 <label
                   htmlFor="contract"
                   className="mb-2 flex items-center font-bold dark:text-text-dark"
@@ -92,12 +92,12 @@ export default function Page() {
                 >
                   <DialogContent
                     title="Contract name"
-                    description="The contract name is the name of your NFT collection, which is visible on chain. This is usually your project or collection name. Contract names cannot be changed after your contract is deployed."
+                    description="The contract name is the name of your NFT collection, which is visible on chain, this is usually your project or collection name. Contract names cannot be changed after your contract is deployed."
                     onClose={contractInfo.close}
                   />
                 </Dialog>
               </div>
-              <div>
+              <div className={"sm:col-span-2"}>
                 <label
                   htmlFor="mcn"
                   className="mb-2 flex items-center font-bold dark:text-text-dark"
@@ -123,7 +123,7 @@ export default function Page() {
                 <Dialog isOpen={tokenInfo.isOpen} onClose={tokenInfo.close}>
                   <DialogContent
                     title="Token symbol"
-                    description="The token symbol is the shorthand way to identify your contract, which is visible on chain. For example, Azuki uses AZUKI and Bored Ape Yacht Club uses BAYC as their respective token symbols. Token symbols cannot be changed after your contract is deployed."
+                    description="The token symbol is the shorthand way to identify your contract, which is visible on chain. For example, Azuki uses AZUKI and Bored Ape Yacht Club uses BAYC as their respective token symbols, token symbols cannot be changed after your contract is deployed."
                     onClose={tokenInfo.close}
                   />
                 </Dialog>
@@ -132,36 +132,40 @@ export default function Page() {
             <ButtonGradiant text="Continue" />
           </div>
 
-          <div className="col-span-2 flex h-fit flex-col gap-4 rounded-md bg-gray-100 p-8 shadow">
+          <div className="col-span-2 flex h-fit flex-col gap-4 rounded-md bg-gray-100 p-8 shadow dark:bg-neutral-800">
             <h1 className="text-md font-bold">
               After you deploy your contract you’ll be able to:
             </h1>
             <div className="flex gap-4">
-              <Newspaper strokeWidth={1} size={20} />
+              <Newspaper strokeWidth={1} size={20} className={"h-5 w-5"} />
               <div>
-                <p className="font-medium text-gray-700">
+                <p className="font-medium text-gray-700 dark:text-white">
                   Manage collection settings
                 </p>
-                <p className={"text-gray-600"}>
+                <p className={"text-gray-600 dark:text-white"}>
                   Edit collection details, earnings, and links.
                 </p>
               </div>
             </div>
             <h1 className="text-md font-bold">Your community:</h1>
             <div className="flex gap-4">
-              <Eye strokeWidth={1} size={20} />
+              <Eye strokeWidth={1} size={20} className={"h-5 w-5"} />
               <div>
-                <p className="font-medium text-gray-700">Can view</p>
-                <p className={"text-gray-600"}>
+                <p className="font-medium text-gray-700 dark:text-white">
+                  Can view
+                </p>
+                <p className={"text-gray-600 dark:text-white"}>
                   That you’ve deployed a contract onto the blockchain.
                 </p>
               </div>
             </div>
             <div className="flex gap-4">
-              <EyeOff strokeWidth={1} size={20} />
+              <EyeOff strokeWidth={1} size={20} className={"h-5 w-5"} />
               <div>
-                <p className="font-medium text-gray-700">Can’t view</p>
-                <p className={"text-gray-600"}>
+                <p className="font-medium text-gray-700 dark:text-white">
+                  Can’t view
+                </p>
+                <p className={"text-gray-600 dark:text-white"}>
                   Your drop page or items until you publish them.
                 </p>
               </div>
@@ -192,7 +196,7 @@ const DialogContent: React.FC<DialogContentProps> = ({
       {splitDescription(description)}
       <button
         onClick={onClose}
-        className="rounded-md bg-gray-200 p-4 transition-colors hover:bg-gray-300"
+        className="rounded-md bg-gray-200 p-4 transition-colors hover:bg-gray-300 dark:bg-neutral-700 dark:hover:bg-neutral-600"
       >
         OK
       </button>
