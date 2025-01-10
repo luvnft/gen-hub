@@ -13,10 +13,10 @@ export default function Page() {
           <Link href={"/create/collection"}>
             <div
               className={
-                "group relative flex w-full items-center justify-between gap-8 rounded-lg bg-gray-50 p-6 pr-8 shadow dark:bg-neutral-800"
+                "group relative flex w-full items-center justify-between gap-8 rounded-lg border border-gray-50 bg-gray-50 p-6 pr-8 shadow dark:border-neutral-800 dark:bg-neutral-800"
               }
             >
-              <span className="absolute inset-0 -z-10 h-full w-full rounded-xl bg-gradient-to-br from-sky-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[4px]" />
+              <span className="absolute inset-0 -z-10 h-full w-full rounded-lg bg-gradient-to-br from-sky-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[6px]" />
 
               <div className={"flex flex-col gap-4"}>
                 <div
@@ -41,10 +41,10 @@ export default function Page() {
           <Link href={"/create/mint"}>
             <div
               className={
-                "group relative flex w-full items-center justify-between gap-8 rounded-lg bg-gray-50 p-6 pr-8 shadow dark:bg-neutral-800"
+                "group relative flex w-full items-center justify-between gap-8 rounded-lg border border-gray-50 bg-gray-50 p-6 pr-8 shadow dark:border-neutral-800 dark:bg-neutral-800"
               }
             >
-              <span className="absolute inset-0 -z-10 h-full w-full rounded-xl bg-gradient-to-br from-sky-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[4px]" />
+              <span className="absolute inset-0 -z-10 h-full w-full rounded-lg bg-gradient-to-br from-sky-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[6px]" />
 
               <div className={"flex flex-col gap-4"}>
                 <div
