@@ -1,72 +1,86 @@
-"use client";
-
-import { Suspense, useState } from "react";
-import { FileUpload } from "@/components/ui/file-upload";
-import ButtonGradiant from "@/components/ui/button-gradiant";
-import Loading from "@/components/common/loading";
+import BackButton from "@/components/common/back-button";
+import SkeletonImage from "@/components/ui/skeleton-image";
+import { ArrowRight, ImageIcon, LayoutGrid } from "lucide-react";
+import Link from "next/link";
 
 export default function Page() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [files, setFiles] = useState<File>();
-  const handleFileUpload = (files: File) => {
-    setFiles(files);
-    console.log(files);
-  };
-
   return (
-    <div className="flex w-full justify-center">
-      <div className="flex max-w-5xl flex-col gap-4">
-        <h1 className="text-xl font-bold sm:text-3xl">Create an NFT</h1>
-        <p className="text-md font-bold sm:text-xl">
-          Once your item is minted you will not be able to change any of its
-          information.
-        </p>
-        <Suspense fallback={<Loading />}>
-          <div className="mx-auto w-full max-w-5xl gap-4 rounded-lg border border-dashed border-border bg-white dark:border-neutral-800 dark:bg-black">
-            <FileUpload onChange={handleFileUpload} />
-          </div>
-        </Suspense>
-        <form className="flex flex-col gap-4">
-          <div className="sm:col-span-1">
-            <label
-              htmlFor="title"
-              className="block text-sm/6 font-medium dark:text-text-dark"
+    <div className={"-my-10 grid w-full lg:grid-cols-2"}>
+      <div className={"flex flex-col gap-4 pt-10 lg:px-16"}>
+        <BackButton href={"/"} className={"w-fit"} />
+        <h1 className={"text-3xl font-bold"}>Create</h1>
+        <div className={"flex flex-col gap-4"}>
+          <Link href={"/create/collection"}>
+            <div
+              className={
+                "group relative flex w-full items-center justify-between gap-8 rounded-lg border border-gray-50 bg-gray-50 p-6 pr-8 shadow dark:border-neutral-800 dark:bg-neutral-800"
+              }
             >
-              Name
-            </label>
-            <div className="mt-2">
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Name your NFT"
-                className="block w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
-                required
-              />
-            </div>
-          </div>
+              <span className="absolute inset-0 -z-10 h-full w-full rounded-lg bg-gradient-to-br from-sky-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[6px]" />
 
-          <div className="col-span-full">
-            <label
-              htmlFor="description"
-              className="block text-sm/6 font-medium text-gray-900 dark:text-text-dark"
-            >
-              Description
-            </label>
-            <div className="mt-2">
-              <textarea
-                name="description"
-                id="description"
-                rows={3}
-                className="block w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
-                defaultValue={""}
-                required
-              />
+              <div className={"flex flex-col gap-4"}>
+                <div
+                  className={"flex items-center gap-2 text-lg font-semibold"}
+                >
+                  <div className={"h-6 w-6"}>
+                    <LayoutGrid size={24} />
+                  </div>
+                  <p>Drop</p>
+                </div>
+                <div>
+                  A drop is the release of a new project. This usually happens
+                  on a specified date and time. Items will be revealed after
+                  they have been purchased.
+                </div>
+              </div>
+              <div className={"h-6 w-6"}>
+                <ArrowRight size={24} />
+              </div>
             </div>
-            <p className="mt-3 text-sm/6">Write a few description about.</p>
-          </div>
-          <ButtonGradiant text="Mint NFT" />
-        </form>
+          </Link>
+          <Link href={"/create/mint"}>
+            <div
+              className={
+                "group relative flex w-full items-center justify-between gap-8 rounded-lg border border-gray-50 bg-gray-50 p-6 pr-8 shadow dark:border-neutral-800 dark:bg-neutral-800"
+              }
+            >
+              <span className="absolute inset-0 -z-10 h-full w-full rounded-lg bg-gradient-to-br from-sky-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[6px]" />
+
+              <div className={"flex flex-col gap-4"}>
+                <div
+                  className={"flex items-center gap-2 text-lg font-semibold"}
+                >
+                  <div className={"h-6 w-6"}>
+                    <ImageIcon size={24} />
+                  </div>
+                  <p>Collection or item</p>
+                </div>
+                <div>
+                  Create a new NFT collection or add an NFT to an existing one.
+                  Your items will display immediately. List for sale when
+                  you&#39;re ready.
+                </div>
+              </div>
+              <div className={"h-6 w-6"}>
+                <ArrowRight size={24} />
+              </div>
+            </div>
+          </Link>
+        </div>
+        <div className={"mb-5"}>
+          <span className={"cursor-not-allowed text-link"}>Learn more </span>
+          about each option.
+        </div>
+      </div>
+
+      <div className={"hidden h-[calc(100vh-66px)] lg:block"}>
+        <SkeletonImage
+          src={
+            "https://images.unsplash.com/photo-1736187273002-13054c9d140a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
+          height={"h-[calc(100vh-66px)]"}
+          className={"h-[calc(100vh-66px)]"}
+        />
       </div>
     </div>
   );

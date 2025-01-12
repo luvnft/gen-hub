@@ -1,16 +1,18 @@
 "use client";
 
 import ThemeSwitcher from "@/components/theme/theme-switcher";
-import Sidebar from "@/components/ui/sidebar";
 import SkeletonImage from "@/components/ui/skeleton-image";
 import useToggle from "@/hooks/use-state-toggle";
 import { client } from "@/lib/client";
 import { ArrowRight, Menu, Plus, User2Icon } from "lucide-react";
 import Link from "next/link";
 import { ConnectButton, useActiveAccount } from "thirdweb/react";
+import Dialog from "@/components/ui/dialog";
+import DisconnectButton from "@/components/thirdweb/disconnect-button";
+import CustomConnectButton from "@/components/thirdweb/connect-button";
 
 const Navbar = () => {
-  const sidebar = useToggle();
+  const dialog = useToggle();
   const account = useActiveAccount();
 
   return (
@@ -32,7 +34,7 @@ const Navbar = () => {
             </div>
             <div
               className="group relative flex h-[35px] w-10 cursor-pointer items-center justify-center rounded-lg border border-nav bg-nav transition-colors ease-out hover:border-sky-500 dark:border-nav-dark dark:bg-nav-dark dark:hover:border-sky-500"
-              onClick={sidebar.toggle}
+              onClick={dialog.toggle}
             >
               <span className="absolute inset-0 -z-10 h-full w-full rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[8px]" />
               <span className="relative">
@@ -42,7 +44,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <Sidebar isOpen={sidebar.isOpen} onClose={sidebar.close}>
+      <Dialog isOpen={dialog.isOpen} onClose={dialog.close} type="sidebar">
         <div className="flex w-full flex-col">
           {[
             {
@@ -50,7 +52,7 @@ const Navbar = () => {
               content: (
                 <div
                   className="flex items-center gap-3.5 pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                  onClick={sidebar.close}
+                  onClick={dialog.close}
                 >
                   <ThemeSwitcher />
                 </div>
@@ -62,7 +64,7 @@ const Navbar = () => {
                 <>
                   <div
                     className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                    onClick={sidebar.close}
+                    onClick={dialog.close}
                   >
                     <Link
                       href="/"
@@ -76,11 +78,11 @@ const Navbar = () => {
                   </div>
                   <div
                     className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                    onClick={sidebar.close}
+                    onClick={dialog.close}
                   >
                     <Link
                       href="/buy"
-                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                      className="w-full cursor-not-allowed p-2.5 pl-0 transition-all ease-out hover:pl-2"
                     >
                       <div className="flex items-center gap-2.5 text-link">
                         <ArrowRight size={22} strokeWidth={1} />
@@ -90,11 +92,11 @@ const Navbar = () => {
                   </div>
                   <div
                     className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                    onClick={sidebar.close}
+                    onClick={dialog.close}
                   >
                     <Link
                       href="/sell"
-                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                      className="w-full cursor-not-allowed p-2.5 pl-0 transition-all ease-out hover:pl-2"
                     >
                       <div className="flex items-center gap-2.5 text-link">
                         <ArrowRight size={22} strokeWidth={1} />
@@ -113,7 +115,7 @@ const Navbar = () => {
                     <>
                       <div
                         className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                        onClick={sidebar.close}
+                        onClick={dialog.close}
                       >
                         <Link
                           href="/profile"
@@ -127,7 +129,7 @@ const Navbar = () => {
                       </div>
                       <div
                         className="flex items-center pl-6 transition-colors hover:bg-border dark:hover:bg-border-dark"
-                        onClick={sidebar.close}
+                        onClick={dialog.close}
                       >
                         <Link
                           href="/create"
@@ -139,9 +141,14 @@ const Navbar = () => {
                           </div>
                         </Link>
                       </div>
+                      <div onClick={dialog.close}>
+                        <DisconnectButton className="ml-0.5 pl-3" />
+                      </div>
                     </>
                   ) : (
-                    <p className="p-2.5 pl-6">Login to continue</p>
+                    <div onClick={dialog.close}>
+                      <CustomConnectButton className="ml-0.5 pl-3" />
+                    </div>
                   )}
                 </>
               ),
@@ -155,7 +162,7 @@ const Navbar = () => {
             </div>
           ))}
         </div>
-      </Sidebar>
+      </Dialog>
     </>
   );
 };

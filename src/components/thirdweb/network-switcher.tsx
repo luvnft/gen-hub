@@ -6,8 +6,14 @@ import { client } from "@/lib/client";
 import { toast } from "sonner";
 import React from "react";
 import { ThirdwebButtonProps } from "@/type/type";
+import { ArrowLeftRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const NetworkSwitcher: React.FC<ThirdwebButtonProps> = ({ type = "text" }) => {
+const NetworkSwitcher: React.FC<ThirdwebButtonProps> = ({
+  type = "text",
+  className,
+  ...props
+}) => {
   const networkSwitcher = useNetworkSwitcherModal();
   const account = useActiveWallet();
 
@@ -33,8 +39,22 @@ const NetworkSwitcher: React.FC<ThirdwebButtonProps> = ({ type = "text" }) => {
 
   return (
     <>
-      {type == "text" ? (
-        <button onClick={handleClick}>Switch Network</button>
+      {type === "text" ? (
+        <div
+          className={cn(
+            "flex cursor-pointer items-center transition-colors hover:bg-border dark:hover:bg-border-dark",
+            className
+          )}
+          onClick={handleClick}
+          {...props}
+        >
+          <div className="w-full p-2.5 transition-colors">
+            <div className="flex items-center gap-2.5">
+              <ArrowLeftRight size={22} strokeWidth={1} />
+              <p>Switch Network</p>
+            </div>
+          </div>
+        </div>
       ) : (
         <></>
       )}

@@ -1,5 +1,3 @@
-"use  client";
-
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronUp } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -32,10 +30,23 @@ const BackToTop = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          className="fixed bottom-2 right-2 flex items-center justify-center rounded-lg border border-border bg-background p-1.5 text-black shadow dark:border-white dark:bg-background-dark dark:text-white"
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 20,
+          }}
+          className="group fixed bottom-2 right-2 rounded-lg shadow"
           onClick={handleClick}
         >
-          <ChevronUp size={20} />
+          <span className="absolute inset-0 -z-10 h-full w-full rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[8px]" />
+
+          <div
+            className={
+              "flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background p-1.5 text-black transition-colors hover:border-sky-500 dark:border-white dark:bg-background-dark dark:text-white dark:hover:border-sky-500"
+            }
+          >
+            <ChevronUp size={20} />
+          </div>
         </motion.button>
       )}
     </AnimatePresence>

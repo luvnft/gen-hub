@@ -1,9 +1,16 @@
-import React from "react";
 import SkeletonImage from "@/components/ui/skeleton-image";
 import Link from "next/link";
-import { CardProps } from "@/type/type";
+import React from "react";
 
-const Card: React.FC<CardProps> = ({
+interface CardProps {
+  title: string;
+  image: string;
+  floor: string;
+  volume: string;
+  [key: string]: unknown;
+}
+
+const NftCard: React.FC<CardProps> = ({
   title,
   image,
   floor,
@@ -37,4 +44,4 @@ const Card: React.FC<CardProps> = ({
   );
 };
 
-export default Card;
+export default NftCard;
