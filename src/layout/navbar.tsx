@@ -10,6 +10,7 @@ import { ConnectButton, useActiveAccount } from "thirdweb/react";
 import Dialog from "@/components/ui/dialog";
 import DisconnectButton from "@/components/thirdweb/disconnect-button";
 import CustomConnectButton from "@/components/thirdweb/connect-button";
+import NetworkSwitcher from "@/components/thirdweb/network-switcher";
 
 const Navbar = () => {
   const dialog = useToggle();
@@ -140,6 +141,9 @@ const Navbar = () => {
                             <p>Create</p>
                           </div>
                         </Link>
+                      </div>
+                      <div onClick={dialog.close}>
+                        <NetworkSwitcher className="ml-0.5 pl-3" />
                       </div>
                       <div onClick={dialog.close}>
                         <DisconnectButton className="ml-0.5 pl-3" />

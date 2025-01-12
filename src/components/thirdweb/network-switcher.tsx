@@ -34,7 +34,7 @@ const NetworkSwitcher: React.FC<ThirdwebButtonProps> = ({
           },
         ],
       })
-      .then((r) => console.log("switched to", r));
+      .then(() => {});
   }
 
   return (
