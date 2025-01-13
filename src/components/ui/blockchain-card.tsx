@@ -1,4 +1,4 @@
-import SkeletonImage from "@/components/ui/skeleton-image";
+import SkeletonImage from "@/components/skeleton/skeleton-image";
 import React from "react";
 
 interface CardProps {

@@ -1,7 +1,7 @@
 "use client";
 
 import ThemeSwitcher from "@/components/theme/theme-switcher";
-import SkeletonImage from "@/components/ui/skeleton-image";
+import SkeletonImage from "@/components/skeleton/skeleton-image";
 import useToggle from "@/hooks/use-state-toggle";
 import { client } from "@/lib/client";
 import { ArrowRight, Menu, Plus, User2Icon } from "lucide-react";

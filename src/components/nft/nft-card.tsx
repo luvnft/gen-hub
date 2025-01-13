@@ -1,4 +1,4 @@
-import SkeletonImage from "@/components/ui/skeleton-image";
+import SkeletonImage from "@/components/skeleton/skeleton-image";
 import Link from "next/link";
 import React from "react";
 
@@ -18,7 +18,7 @@ const NftCard: React.FC<CardProps> = ({
   ...prop
 }) => {
   return (
-    <Link href={`/`}>
+    <Link href={`/src/public`}>
       <div
         className="flex flex-col gap-3 rounded-xl bg-background pb-4 text-text shadow transition-colors dark:bg-gray-900 dark:text-text-dark"
         {...prop}

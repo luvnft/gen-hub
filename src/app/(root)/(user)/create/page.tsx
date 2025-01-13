@@ -1,5 +1,5 @@
 import BackButton from "@/components/common/back-button";
-import SkeletonImage from "@/components/ui/skeleton-image";
+import SkeletonImage from "@/components/skeleton/skeleton-image";
 import { ArrowRight, ImageIcon, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 

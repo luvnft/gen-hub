@@ -3,7 +3,7 @@
 import { useActiveAccount } from "thirdweb/react";
 import { Suspense } from "react";
 import Loading from "@/components/common/loading";
-import NftCard from "@/components/ui/nft-card";
+import NftCard from "@/components/nft/nft-card";
 
 export default function Page() {
   // console.log(client)

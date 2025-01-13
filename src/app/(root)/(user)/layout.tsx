@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { redirect } from "next/navigation";
 import { useActiveAccount } from "thirdweb/react";
 import useToggle from "@/hooks/use-state-toggle";
-import SkeletonImage from "@/components/ui/skeleton-image";
+import SkeletonImage from "@/components/skeleton/skeleton-image";
 import ConnectButton from "@/components/thirdweb/connect-button";
 import Dialog from "@/components/ui/dialog";
 
