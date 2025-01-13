@@ -7,7 +7,7 @@ import { MediaRenderer } from "thirdweb/react";
 import { getNFT } from "thirdweb/extensions/erc721";
 import { useRouter } from "next/navigation";
 import { NFT_COLLECTION } from "@/contracts/contracts";
-import { client } from "@/lib/client";
+import client from "@/lib/client";
 import Skeleton from "@/components/skeleton/skeleton";
 
 type Props = {

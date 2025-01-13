@@ -1,8 +1,7 @@
 "use client";
 
 import { useActiveWallet, useNetworkSwitcherModal } from "thirdweb/react";
-import { polygon } from "thirdweb/chains";
-import { client, POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
+import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
 import { toast } from "sonner";
 import React from "react";
 import { ThirdwebButtonProps } from "@/type/type";

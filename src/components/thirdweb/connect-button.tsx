@@ -1,6 +1,6 @@
 "use client";
 
-import { client, POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
+import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
 import { useConnectModal } from "thirdweb/react";
 import { toast } from "sonner";
 import React from "react";

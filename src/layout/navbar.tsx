@@ -3,10 +3,10 @@
 import ThemeSwitcher from "@/components/theme/theme-switcher";
 import SkeletonImage from "@/components/skeleton/skeleton-image";
 import useToggle from "@/hooks/use-state-toggle";
-import { client } from "@/lib/client";
+import client from "@/lib/client";
 import { ArrowRight, Menu, Plus, User2Icon } from "lucide-react";
 import Link from "next/link";
-import { ConnectButton, useActiveAccount } from "thirdweb/react";
+import { Blobbie, ConnectButton, useActiveAccount } from "thirdweb/react";
 import Dialog from "@/components/ui/dialog";
 import DisconnectButton from "@/components/thirdweb/disconnect-button";
 import CustomConnectButton from "@/components/thirdweb/connect-button";
@@ -25,16 +25,26 @@ const Navbar = () => {
               src="/logo.png"
               width="35px"
               height="35px"
-              className="aspect-square rounded-full"
+              className="aspect-square rounded-full shadow"
               isPriority
             />
           </Link>
           <div className="flex items-center gap-4">
+            <div
+              className={
+                "flex h-[35px] w-10 items-center justify-center rounded-lg bg-nav shadow dark:bg-nav-dark"
+              }
+            >
+              <Blobbie
+                address={`${account?.address}`}
+                className="h-[24px] w-[24px] rounded-full shadow"
+              />
+            </div>
             <div className="sr-only">
               <ConnectButton client={client} />
             </div>
             <div
-              className="group relative flex h-[35px] w-10 cursor-pointer items-center justify-center rounded-lg border border-nav bg-nav transition-colors ease-out hover:border-sky-500 dark:border-nav-dark dark:bg-nav-dark dark:hover:border-sky-500"
+              className="group relative flex h-[35px] w-10 cursor-pointer items-center justify-center rounded-lg border border-nav bg-nav shadow transition-colors ease-out hover:border-sky-500 dark:border-nav-dark dark:bg-nav-dark dark:hover:border-sky-500"
               onClick={dialog.toggle}
             >
               <span className="absolute inset-0 -z-10 h-full w-full rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 filter transition-all duration-300 ease-out group-hover:blur-[8px]" />
@@ -83,7 +93,7 @@ const Navbar = () => {
                   >
                     <Link
                       href="/buy"
-                      className="w-full cursor-not-allowed p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
                     >
                       <div className="flex items-center gap-2.5 text-link">
                         <ArrowRight size={22} strokeWidth={1} />

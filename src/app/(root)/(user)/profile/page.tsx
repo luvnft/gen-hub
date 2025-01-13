@@ -1,9 +1,9 @@
 "use client";
 
-import { useActiveAccount, useWalletBalance } from "thirdweb/react";
+import { Blobbie, useActiveAccount, useWalletBalance } from "thirdweb/react";
 import Loading from "@/components/common/loading";
-import NftCard from "@/components/nft/nft-card";
-import { client, POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
+import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
+import { AccountProvider, AccountBalance } from "thirdweb/react";
 
 export default function Page() {
   // This is the chain your dApp will work on.
@@ -28,14 +28,18 @@ export default function Page() {
         {isLoading ? (
           <Loading />
         ) : (
-          <p>
+          <>
             {balance?.displayValue} {balance?.symbol}
-          </p>
+          </>
         )}
       </div>
-      <div className="grid gap-4 pt-8 sm:grid-cols-5">
-        <NftCard title={"bla bla"} image={""} floor={"a"} volume={"b"} />
-      </div>
+      <Blobbie address={`${account?.address}`} className="h-10 w-10" />
+      <AccountProvider address={`${account?.address}`} client={client}>
+        <AccountBalance
+          chain={POLYGON_ZKEVM_CARDONA_TESTNET}
+          loadingComponent={<Loading />}
+        />
+      </AccountProvider>
     </>
   );
 }

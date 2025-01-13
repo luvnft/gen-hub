@@ -1,4 +1,4 @@
-import { client, POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
+import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
 import { getContract } from "thirdweb";
 
 /** Replace the values below with the addresses of your smart contracts. */
