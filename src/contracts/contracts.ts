@@ -1,5 +1,6 @@
-import { client, NETWORK } from "@/lib/client";
+import { client, POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
 import { getContract } from "thirdweb";
+
 /** Replace the values below with the addresses of your smart contracts. */
 // 1. Set up the network your smart contracts are deployed to.
 // First, import the chain from the package, then set the NETWORK variable to the chain.
@@ -14,17 +15,17 @@ const CONTRACT_MARKET_ADDRESS: string =
 const NFT_COLLECTION_ADDRESS: string =
   process.env.NEXT_PUBLIC_COLLECTION_CONTRACT_ADDRESS;
 
-export const MarkerPlace = getContract({
+export const MARKETPLACE = getContract({
   client,
-  chain: NETWORK,
+  chain: POLYGON_ZKEVM_CARDONA_TESTNET,
   address: CONTRACT_MARKET_ADDRESS,
 });
 
 export const NFT_COLLECTION = getContract({
-  address: NFT_COLLECTION_ADDRESS,
   client,
-  chain: NETWORK,
+  chain: POLYGON_ZKEVM_CARDONA_TESTNET,
+  address: NFT_COLLECTION_ADDRESS,
 });
 
 // (Optional) Set up the URL of where users can view transactions on
-export const ETHERSCAN_URL = "https://cardona-zkevm.polygonscan.com";
+export const POLYGONSCAN_URL = "https://cardona-zkevm.polygonscan.com";

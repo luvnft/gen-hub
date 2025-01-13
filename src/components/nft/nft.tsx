@@ -40,9 +40,7 @@ export default function NFTComponent({
     }
   }, [tokenId, nft?.id]);
 
-  if (!nft) {
-    return <LoadingNFTComponent />;
-  }
+  if (!nft) return <LoadingNFTComponent />;
 
   return (
     <div

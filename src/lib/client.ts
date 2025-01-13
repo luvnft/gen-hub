@@ -19,6 +19,28 @@ if (!address_collection_contract)
 
 export const NETWORK = defineChain(2442);
 
+export const POLYGON_ZKEVM_CARDONA_TESTNET = defineChain({
+  id: 2442,
+  name: "Polygon zkEVM Cardona Testnet",
+  nativeCurrency: {
+    name: "ETH",
+    symbol: "ETH",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://rpc.cardona.zkevm-rpc.com"],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: "PolygonScan",
+      url: "https://cardona-zkevm.polygonscan.com",
+    },
+  },
+  testnet: true,
+});
+
 export const client = createThirdwebClient({
   clientId: clientId,
 });

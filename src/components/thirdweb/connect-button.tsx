@@ -1,6 +1,6 @@
 "use client";
 
-import { client } from "@/lib/client";
+import { client, POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
 import { useConnectModal } from "thirdweb/react";
 import { toast } from "sonner";
 import React from "react";
@@ -18,6 +18,8 @@ const ConnectButton: React.FC<ThirdwebButtonProps> = ({
   const handleConnect = async () => {
     const wallet = await connect({
       client,
+      chain: POLYGON_ZKEVM_CARDONA_TESTNET,
+      showThirdwebBranding: false,
       appMetadata: {
         name: "Generative Hub App",
         url: "https://generative-hub-app.vercel.app/",
@@ -25,7 +27,6 @@ const ConnectButton: React.FC<ThirdwebButtonProps> = ({
         logoUrl:
           "https://github.com/Axyl1410/Generative-Hub-App/blob/main/src/public/logo.png",
       },
-      showThirdwebBranding: false,
       welcomeScreen: {
         title: "Generative Hub App",
         subtitle: "Generative Hub App: Powered by Forma NFTs",
