@@ -38,10 +38,12 @@ const Navbar = () => {
               }
             >
               {account ? (
-                <Blobbie
-                  address={`${account?.address}`}
-                  className="h-6 w-6 rounded-full shadow"
-                />
+                <Link href={"/profile"} onClick={dialog.close}>
+                  <Blobbie
+                    address={`${account?.address}`}
+                    className="h-6 w-6 rounded-full shadow"
+                  />
+                </Link>
               ) : (
                 <div
                   className={
