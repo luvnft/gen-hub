@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import React from "react";
 import { ThirdwebButtonProps } from "@/type/type";
 import { Wallet } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, format } from "@/lib/utils";
 import Loading from "@/components/common/loading";
 import { motion } from "framer-motion";
 
@@ -82,6 +82,7 @@ const ConnectButton: React.FC<ThirdwebButtonProps> = ({
                   chain={POLYGON_ZKEVM_CARDONA_TESTNET}
                   loadingComponent={<Loading />}
                   fallbackComponent={<div>Failed to load</div>}
+                  formatFn={format}
                 />
               </motion.div>
             </AccountProvider>

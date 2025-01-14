@@ -119,7 +119,7 @@ const Navbar = () => {
                   >
                     <Link
                       href="/sell"
-                      className="w-full cursor-not-allowed p-2.5 pl-0 transition-all ease-out hover:pl-2"
+                      className="w-full p-2.5 pl-0 transition-all ease-out hover:pl-2"
                     >
                       <div className="flex items-center gap-2.5 text-link">
                         <ArrowRight size={22} strokeWidth={1} />

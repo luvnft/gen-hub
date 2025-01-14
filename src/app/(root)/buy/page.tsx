@@ -14,7 +14,7 @@ export default function Buy() {
             marketplace={MARKETPLACE}
             collection={NFT_COLLECTION}
             emptyText={
-              "Looks like there are no listed NFTs in this collection. Did you import your contract on the thirdweb dashboard? https://thirdweb.com/dashboard"
+              "Looks like there are no listed NFTs in this collection. Check back later!"
             }
           />
         </Suspense>
