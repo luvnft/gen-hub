@@ -30,15 +30,25 @@ const Navbar = () => {
             />
           </Link>
           <div className="flex items-center gap-4">
+            <CustomConnectButton type={"icon"} />
+
             <div
               className={
                 "flex h-[35px] w-10 items-center justify-center rounded-lg bg-nav shadow dark:bg-nav-dark"
               }
             >
-              <Blobbie
-                address={`${account?.address}`}
-                className="h-[24px] w-[24px] rounded-full shadow"
-              />
+              {account ? (
+                <Blobbie
+                  address={`${account?.address}`}
+                  className="h-6 w-6 rounded-full shadow"
+                />
+              ) : (
+                <div
+                  className={
+                    "h-6 w-6 animate-pulse rounded-full bg-neutral-400 shadow"
+                  }
+                ></div>
+              )}
             </div>
             <div className="sr-only">
               <ConnectButton client={client} />

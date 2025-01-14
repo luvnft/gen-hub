@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/style/skeleton.module.scss";
+import styles from "@/styles/skeleton.module.scss";
 
 type Props = {
   width?: string;

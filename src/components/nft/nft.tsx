@@ -54,7 +54,7 @@ export default function NFTComponent({
               )
       }
     >
-      <div className="relative h-64 w-full bg-white/[.04]">
+      <div className="relative h-64 w-full overflow-hidden bg-white/[.04]">
         {nft.metadata.image && (
           <MediaRenderer
             src={nft.metadata.image}
@@ -63,22 +63,22 @@ export default function NFTComponent({
           />
         )}
       </div>
-      <div className="flex w-full flex-1 items-center justify-between px-3">
+      <div className="flex w-full flex-1 items-center justify-between bg-gray-200 px-3 shadow dark:bg-neutral-800">
         <div className="flex flex-col justify-center py-3">
-          <p className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-lg text-white">
+          <p className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-lg text-black dark:text-white">
             {nft.metadata.name}
           </p>
-          <p className="text-sm font-semibold text-white/60">
+          <p className="text-sm font-semibold text-text dark:text-white/60">
             #{nft.id.toString()}
           </p>
         </div>
 
         {(directListing || auctionListing) && (
           <div className="flex flex-col items-end justify-center">
-            <p className="mb-1 max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-medium text-white/60">
+            <p className="mb-1 max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-medium text-text dark:text-white/60">
               Price
             </p>
-            <p className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-white">
+            <p className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-text dark:text-white">
               {directListing
                 ? `${directListing?.currencyValuePerToken.displayValue}${directListing?.currencyValuePerToken.symbol}`
                 : `${auctionListing?.minimumBidCurrencyValue.displayValue}${auctionListing?.minimumBidCurrencyValue.symbol}`}

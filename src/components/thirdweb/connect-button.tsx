@@ -1,12 +1,19 @@
 "use client";
 
 import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
-import { useConnectModal } from "thirdweb/react";
+import {
+  AccountBalance,
+  AccountProvider,
+  useActiveAccount,
+  useConnectModal,
+} from "thirdweb/react";
 import { toast } from "sonner";
 import React from "react";
 import { ThirdwebButtonProps } from "@/type/type";
 import { Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Loading from "@/components/common/loading";
+import { motion } from "framer-motion";
 
 const ConnectButton: React.FC<ThirdwebButtonProps> = ({
   type = "text",
@@ -14,6 +21,7 @@ const ConnectButton: React.FC<ThirdwebButtonProps> = ({
   ...props
 }) => {
   const { connect } = useConnectModal();
+  const account = useActiveAccount();
 
   const handleConnect = async () => {
     const wallet = await connect({
@@ -55,7 +63,30 @@ const ConnectButton: React.FC<ThirdwebButtonProps> = ({
           </div>
         </div>
       ) : (
-        <></>
+        <motion.div
+          className={cn(
+            "flex h-[35px] items-center justify-center gap-2 overflow-hidden rounded-lg bg-nav p-2 text-sm shadow dark:bg-nav-dark",
+            !account && "cursor-pointer"
+          )}
+          layout
+          style={{ width: "auto" }}
+          onClick={account ? undefined : handleConnect}
+        >
+          <motion.div layout>
+            <Wallet />
+          </motion.div>
+          {account && (
+            <AccountProvider address={`${account?.address}`} client={client}>
+              <motion.div layout>
+                <AccountBalance
+                  chain={POLYGON_ZKEVM_CARDONA_TESTNET}
+                  loadingComponent={<Loading />}
+                  fallbackComponent={<div>Failed to load</div>}
+                />
+              </motion.div>
+            </AccountProvider>
+          )}
+        </motion.div>
       )}
     </>
   );
