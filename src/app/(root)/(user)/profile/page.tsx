@@ -1,12 +1,10 @@
 "use client";
 
-import { Blobbie, useActiveAccount, useWalletBalance } from "thirdweb/react";
-import Loading from "@/components/common/loading";
+import { useActiveAccount, useWalletBalance } from "thirdweb/react";
 import "@/styles/profile.module.scss";
 import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
-import { useState, useEffect } from "react";
-
-import { FaCamera, FaClipboard, FaCopy, FaEthereum } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaCamera, FaCopy, FaEthereum } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import {
   Button,
@@ -20,12 +18,14 @@ import MenuSection from "@/components/ui/menu-section";
 
 const ProfilePage: React.FC = () => {
   const account = useActiveAccount();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data: balance, isLoading: isLoading } = useWalletBalance({
     client: client,
     chain: POLYGON_ZKEVM_CARDONA_TESTNET,
     address: account?.address,
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [joinDate, setJoinDate] = useState<string>("Loading...");
   //SET AVATAR AND COVER PROFILE
   const [avatar, setAvatar] = useState<string>("https://placehold.co/100x100");
@@ -49,9 +49,9 @@ const ProfilePage: React.FC = () => {
     };
 
     if (account?.address) {
-      fetchUserData();
+      fetchUserData().then((r) => r);
     }
-  }, [account?.address]);
+  }, [account?.address, avatar, coverPhoto]);
 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -78,12 +78,12 @@ const ProfilePage: React.FC = () => {
     if (!address) return "";
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
-// Function copy address
+  // Function copy address
   const [copied, setCopied] = useState(false);
   const [tooltip, setTooltip] = useState<string | null>(null);
   const handleCopy = () => {
     if (account?.address) {
-      navigator.clipboard.writeText(account.address);
+      navigator.clipboard.writeText(account.address).then((r) => r);
       setCopied(true);
       setTooltip("Copied!");
       setTimeout(() => {
@@ -92,7 +92,7 @@ const ProfilePage: React.FC = () => {
       }, 200);
     }
   };
-  // FUNCTION MENU 
+  // FUNCTION MENU
   const [activeMenu, setActiveMenu] = useState<string>("Collected");
 
   const renderContent = () => {
@@ -116,9 +116,10 @@ const ProfilePage: React.FC = () => {
   return (
     <div>
       {/* Header Section */}
-      
+
       {/* Cover Section */}
-      <div className="relative h-64 sm:h-60 lg:h-80 rounded-b-md overflow-hidde" >
+      <div className="overflow-hidde relative h-64 rounded-b-md sm:h-60 lg:h-80">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={coverPhoto}
           alt="Cover"
@@ -142,8 +143,9 @@ const ProfilePage: React.FC = () => {
       </div>
 
       {/* Avatar Section */}
-      <div className="relative -mt-32 ml-6 flex ">
-        <div className="relative ">
+      <div className="relative -mt-32 ml-6 flex">
+        <div className="relative">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={avatar}
             alt="Profile"
@@ -172,13 +174,15 @@ const ProfilePage: React.FC = () => {
           <div className="setting cursor-pointer">
             <Dropdown>
               <DropdownTrigger>
-                <Button >
+                <Button>
                   {" "}
                   <BsThreeDots size={24} />
                 </Button>
               </DropdownTrigger>
               <DropdownMenu aria-label="Static Actions">
-                <DropdownItem key="new"><Link href="/profile/setting">Setting</Link></DropdownItem>
+                <DropdownItem key="new">
+                  <Link href="/profile/setting">Setting</Link>
+                </DropdownItem>
                 <DropdownItem key="copy">Copy link</DropdownItem>
                 <DropdownItem key="edit">Edit file</DropdownItem>
                 <DropdownItem
@@ -243,7 +247,7 @@ const ProfilePage: React.FC = () => {
 
       {/* Navigation Section */}
       <div className="mt-6 flex px-4">
-      <MenuSection
+        <MenuSection
           items={[
             "Collected",
             "Offers made",
@@ -257,7 +261,7 @@ const ProfilePage: React.FC = () => {
           layout="horizontal" // Change to "vertical" for vertical layout
         />
       </div>
-      <hr className="mt-6"/>
+      <hr className="mt-6" />
       {/* Filters Section */}
       {/* <div className="mt-6 flex px-4">
         <div className="flex flex-wrap justify-center space-x-2">
@@ -290,7 +294,7 @@ const ProfilePage: React.FC = () => {
 
       {/* Items Section */}
       <div className="mt-10 px-4 text-center">
-      <div className="mt-10 px-4 text-center">{renderContent()}</div>
+        <div className="mt-10 px-4 text-center">{renderContent()}</div>
         {/* <p className="text-gray-500">0 items</p>
         <div className="mt-4">
           <p className="text-gray-500">No items found for this search</p>
