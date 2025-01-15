@@ -78,8 +78,8 @@ export default async function Page({
             />
             {nft.owner && (
               <div className="flex flex-col">
-                <p className="text-white/60">Current Owner</p>
-                <p className="font-medium text-white/90">
+                <p className="text-text dark:text-white/60">Current Owner</p>
+                <p className="font-medium text-text dark:text-white/90">
                   {nft.owner.slice(0, 8)}...
                   {nft.owner.slice(-4)}
                 </p>
@@ -97,8 +97,8 @@ export default async function Page({
         <div className="relative mb-6 flex w-full grow flex-col overflow-hidden rounded-lg bg-transparent">
           {/* Pricing information */}
           <div className="w-full rounded-lg bg-white/[.04] p-4">
-            <p className="mb-1 text-white/60">Price</p>
-            <div className="rounded-md text-lg font-medium text-white/90">
+            <p className="mb-1 text-text dark:text-white/60">Price</p>
+            <div className="rounded-md text-lg font-medium text-text dark:text-white/90">
               {directListing ? (
                 <>
                   {directListing?.currencyValuePerToken.displayValue}
@@ -117,7 +117,7 @@ export default async function Page({
               {auctionListing && (
                 <>
                   <p
-                    className="mb-4 text-white/60"
+                    className="text-textdark:text-white/60 mb-4"
                     style={{
                       marginTop: 12,
                     }}
@@ -125,7 +125,7 @@ export default async function Page({
                     Bids starting from
                   </p>
 
-                  <div className="font-lg rounded-md font-medium text-white/90">
+                  <div className="font-lg rounded-md font-medium text-text dark:text-white/90">
                     {auctionListing?.minimumBidCurrencyValue.displayValue}
                     {" " + auctionListing?.minimumBidCurrencyValue.symbol}
                   </div>
@@ -141,7 +141,7 @@ export default async function Page({
           />
 
           <div className="my-4 flex w-full justify-center text-center">
-            <p className="text-white/60">or</p>
+            <p className="text-text dark:text-white/60">or</p>
           </div>
           <MakeOfferButton
             auctionListing={auctionListing}

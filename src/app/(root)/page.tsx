@@ -6,7 +6,7 @@ export default function Page() {
     <div>
       <span className="fixed start-1/2 top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-gradient-to-tl from-red-600/20 to-violet-600/20 blur-[200px] dark:from-red-600/40 dark:to-violet-600/40 ltr:-translate-x-1/2 rtl:translate-x-1/2"></span>
 
-      <section className="relative -mt-10 flex h-[calc(100vh-66px)] items-center justify-center overflow-hidden">
+      <section className="relative flex h-[calc(100vh-66px)] items-center justify-center overflow-hidden">
         <div className="container">
           <div className="mt-10 grid grid-cols-1 justify-center text-center">
             <div className="relative">

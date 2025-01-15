@@ -11,20 +11,19 @@ import client from "@/lib/client";
 import { NFT_COLLECTION } from "@/contracts/contracts";
 import { toast } from "sonner";
 
-export const dynamic = "force-dynamic";
-
 export default function Sell() {
   const [loading, setLoading] = useState(false);
   const [ownedTokenIds, setOwnedTokenIds] = useState<readonly bigint[]>([]);
   const [selectedNft, setSelectedNft] = useState<NFTType>();
 
   const account = useActiveAccount();
+
   useEffect(() => {
     if (account) {
       setLoading(true);
       tokensOfOwner({
         contract: NFT_COLLECTION,
-        owner: account.address,
+        owner: account?.address,
       })
         .then(setOwnedTokenIds)
         .catch((err) => {

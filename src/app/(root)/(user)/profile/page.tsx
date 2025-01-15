@@ -1,12 +1,10 @@
 "use client";
 
-import { Blobbie, useActiveAccount, useWalletBalance } from "thirdweb/react";
-import Loading from "@/components/common/loading";
+import { useActiveAccount, useWalletBalance } from "thirdweb/react";
 import "@/styles/profile.module.scss";
 import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
-import { useState, useEffect } from "react";
-
-import { FaCamera, FaClipboard, FaCopy, FaEthereum } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaCamera, FaCopy, FaEthereum } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import {
   Button,
@@ -21,12 +19,14 @@ import CollectedPage from "./collection";
 
 const ProfilePage: React.FC = () => {
   const account = useActiveAccount();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data: balance, isLoading: isLoading } = useWalletBalance({
     client: client,
     chain: POLYGON_ZKEVM_CARDONA_TESTNET,
     address: account?.address,
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [joinDate, setJoinDate] = useState<string>("Loading...");
   //SET AVATAR AND COVER PROFILE
   const [avatar, setAvatar] = useState<string>("https://placehold.co/100x100");
@@ -50,9 +50,9 @@ const ProfilePage: React.FC = () => {
     };
 
     if (account?.address) {
-      fetchUserData();
+      fetchUserData().then((r) => r);
     }
-  }, [account?.address]);
+  }, [account?.address, avatar, coverPhoto]);
 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -84,7 +84,7 @@ const ProfilePage: React.FC = () => {
   const [tooltip, setTooltip] = useState<string | null>(null);
   const handleCopy = () => {
     if (account?.address) {
-      navigator.clipboard.writeText(account.address);
+      navigator.clipboard.writeText(account.address).then((r) => r);
       setCopied(true);
       setTooltip("Copied!");
       setTimeout(() => {
