@@ -119,7 +119,7 @@ const ProfilePage: React.FC = () => {
       {/* Header Section */}
 
       {/* Cover Section */}
-      <div className="overflow-hidde relative h-64 rounded-b-md sm:h-60 lg:h-80">
+      <div className="overflow-hidde relative h-64 rounded-b-md md:h-16 lg:h-80">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={coverPhoto}
@@ -156,7 +156,7 @@ const ProfilePage: React.FC = () => {
           <Blobbie
             address={`${account?.address}`}
             className={
-              "h-48 w-48 rounded-full border-4 border-white object-cover"
+              "h-48 w-48  sm:h-48 sm:w-48 rounded-full border-4 border-white object-cover"
             }
           />
           <input
@@ -175,9 +175,9 @@ const ProfilePage: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="ml-6 mt-4">
+      <div className=" mt-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4  flex-wrap">
             <h1 className="text-2xl font-bold">Unnamed</h1>
             <span> | </span>
             {/* Address info */}
@@ -211,22 +211,7 @@ const ProfilePage: React.FC = () => {
                     )}
                   </span>
                 </div>
-                {/* <div className="mt-6 text-gray-600">
-              Wallet balance:{" "}
-              {isLoading ? (
-                <Loading />
-              ) : (
-                <>
-                  {balance?.displayValue} {balance?.symbol}
-                </>
-              )}
-            </div> */}
-                {/* <Blobbie
-              address={account?.address || "0x"}
-              className="mx-auto mt-4 h-10 w-10"
-            /> */}
               </div>
-              {/* Joined {joinDate} */}
             </section>
           </div>
 
@@ -241,15 +226,7 @@ const ProfilePage: React.FC = () => {
                 <DropdownItem key="new">
                   <Link href="/profile/setting">Setting</Link>
                 </DropdownItem>
-                <DropdownItem key="copy">Copy link</DropdownItem>
-                <DropdownItem key="edit">Edit file</DropdownItem>
-                <DropdownItem
-                  key="delete"
-                  className="text-danger"
-                  color="danger"
-                >
-                  Delete file
-                </DropdownItem>
+
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -257,7 +234,7 @@ const ProfilePage: React.FC = () => {
       </div>
 
       {/* Navigation Section */}
-      <div className="mt-6 flex px-4">
+      <div className="mt-6 flex overflow-auto ">
         <MenuSection
           items={[
             "Collected",
@@ -265,6 +242,7 @@ const ProfilePage: React.FC = () => {
             "Deals",
             "Created",
             "Favorited",
+            "Sell",
             "Activity",
           ]}
           activeItem={activeMenu}
@@ -272,48 +250,10 @@ const ProfilePage: React.FC = () => {
           layout="horizontal" // Change to "vertical" for vertical layout
         />
       </div>
-      <hr className="mt-6" />
-      {/* Filters Section */}
-      {/* <div className="mt-6 flex px-4">
-        <div className="flex flex-wrap justify-center space-x-2">
-          <button className="flex items-center space-x-2 rounded-md border px-4 py-2 hover:bg-gray-100">
-            <i className="fas fa-filter"></i>
-            <span>Status</span>
-            <i className="fas fa-caret-down"></i>
-          </button>
-          <button className="flex items-center space-x-2 rounded-md border px-4 py-2 hover:bg-gray-100">
-            <span>Chains</span>
-            <i className="fas fa-caret-down"></i>
-          </button>
-          <input
-            type="text"
-            placeholder="Search by name"
-            className="rounded-md border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <button className="flex items-center space-x-2 rounded-md border px-4 py-2 hover:bg-gray-100">
-            <span>Recently received</span>
-            <i className="fas fa-caret-down"></i>
-          </button>
-          <button className="rounded-md border px-4 py-2 hover:bg-gray-100">
-            <i className="fas fa-list"></i>
-          </button>
-          <button className="rounded-md border px-4 py-2 hover:bg-gray-100">
-            <i className="fas fa-th"></i>
-          </button>
-        </div>
-      </div> */}
-
+      <hr className="mt-6" />    
       {/* Items Section */}
-      <div className="mt-10 px-4 text-center">
-        <div className="mt-10 px-4 text-center">{renderContent()}</div>
-        {/* <p className="text-gray-500">0 items</p>
-        <div className="mt-4">
-          <p className="text-gray-500">No items found for this search</p>
-          <button className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
-            Back to all items
-          </button>
-        </div> */}
-      </div>
+      <div className="mt-10 text-center">{renderContent()}</div>
+     
     </div>
   );
 };
