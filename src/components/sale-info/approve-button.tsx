@@ -14,7 +14,7 @@ export default function ApprovalButton() {
         });
       }}
       onTransactionSent={() => {
-        toast.loading("Approving...");
+        toast.info("Approving...");
       }}
       onError={(error) => {
         toast.error(`Approval Failed!`);

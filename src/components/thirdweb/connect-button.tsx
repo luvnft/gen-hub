@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import React from "react";
 import { ThirdwebButtonProps } from "@/type/type";
 import { Wallet } from "lucide-react";
-import { cn, format } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import Loading from "@/components/common/loading";
 import { motion } from "framer-motion";
 

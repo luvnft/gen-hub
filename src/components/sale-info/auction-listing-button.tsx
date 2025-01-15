@@ -29,7 +29,7 @@ export default function AuctionListingButton({
         });
       }}
       onTransactionSent={() => {
-        toast.loading("Listing...");
+        toast.info("Listing...");
       }}
       onError={(error) => {
         toast.error(`Listing Failed!`);

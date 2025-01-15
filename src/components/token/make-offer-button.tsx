@@ -59,7 +59,7 @@ export default function MakeOfferButton({
           }
         }}
         onTransactionSent={() => {
-          toast.loading("Offer Sent!");
+          toast.info("Offer Sent!");
         }}
         onError={(error) => {
           toast.error("Error making offer: " + error.message);

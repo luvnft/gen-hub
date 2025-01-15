@@ -1,8 +1,8 @@
 import React from "react";
-import { Blobbie, MediaRenderer } from "thirdweb/react";
+import { MediaRenderer } from "thirdweb/react";
 import {
-  getAllValidListings,
   getAllValidAuctions,
+  getAllValidListings,
 } from "thirdweb/extensions/marketplace";
 import { MARKETPLACE, NFT_COLLECTION } from "@/contracts/contracts";
 import randomColor from "@/lib/utils";

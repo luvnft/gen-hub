@@ -44,7 +44,7 @@ export default function BuyListingButton({
         }
       }}
       onTransactionSent={() => {
-        toast.loading("Purchasing...");
+        toast.info("Purchasing...");
       }}
       onError={(error) => {
         toast.error("Purchase Failed!" + error.message);

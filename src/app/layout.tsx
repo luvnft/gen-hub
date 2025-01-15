@@ -22,6 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Generative Hub App",
   description: "Generative Hub App: Powered by Forma NFTs",
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
