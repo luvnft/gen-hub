@@ -1,11 +1,8 @@
 "use client";
 
-import { useActiveAccount, useWalletBalance } from "thirdweb/react";
-import "@/styles/profile.module.scss";
+import MenuSection from "@/components/ui/menu-section";
 import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
-import React, { useEffect, useState } from "react";
-import { FaCamera, FaCopy, FaEthereum } from "react-icons/fa";
-import { BsThreeDots } from "react-icons/bs";
+import "@/styles/profile.module.scss";
 import {
   Button,
   Dropdown,
@@ -14,8 +11,10 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import Link from "next/link";
-import MenuSection from "@/components/ui/menu-section";
-import CollectedPage from "./collection";
+import React, { useEffect, useState } from "react";
+import { BsThreeDots } from "react-icons/bs";
+import { FaCamera, FaCopy, FaEthereum } from "react-icons/fa";
+import { Blobbie, useActiveAccount, useWalletBalance } from "thirdweb/react";
 
 const ProfilePage: React.FC = () => {
   const account = useActiveAccount();
@@ -99,7 +98,7 @@ const ProfilePage: React.FC = () => {
   const renderContent = () => {
     switch (activeMenu) {
       case "Collected":
-        return <CollectedPage />;
+        return <p>Displaying Collected items...</p>;
       case "Offers made":
         return <p>Displaying Offers made...</p>;
       case "Deals":
@@ -120,6 +119,7 @@ const ProfilePage: React.FC = () => {
 
       {/* Cover Section */}
       <div className="overflow-hidde relative h-64 rounded-b-md sm:h-60 lg:h-80">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={coverPhoto}
           alt="Cover"
@@ -145,11 +145,18 @@ const ProfilePage: React.FC = () => {
       {/* Avatar Section */}
       <div className="relative -mt-32 ml-6 flex">
         <div className="relative">
-          <img
-            src={avatar}
-            alt="Profile"
-            className="profile-avatar h-48 w-48 cursor-pointer rounded-full border-4 border-white object-cover"
-            onClick={() => document.getElementById("avatarInput")?.click()}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/*<img*/}
+          {/*  src={avatar}*/}
+          {/*  alt="Profile"*/}
+          {/*  className="profile-avatar h-48 w-48 cursor-pointer rounded-full border-4 border-white object-cover"*/}
+          {/*  onClick={() => document.getElementById("avatarInput")?.click()}*/}
+          {/*/>*/}
+          <Blobbie
+            address={`${account?.address}`}
+            className={
+              "h-48 w-48 rounded-full border-4 border-white object-cover"
+            }
           />
           <input
             type="file"
@@ -167,66 +174,13 @@ const ProfilePage: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="mt-4">
+      <div className="ml-6 mt-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold">Unnamed</h1>
-            <span> | </span>
-            {/* Address info */}
-            <section className="flex text-500">
-              {/* Wallet Info Section */}
-              <div className="">
-                <div className="flex items-center">
-                  <FaEthereum className="mr-2 text-xl" /> {/* Ethereum Icon */}
-                  <span className="relative">
-                    {/* Shortened Address Display */}
-                    <span
-                      onClick={handleCopy}
-                      onMouseEnter={() => setTooltip("Copy")} // Show "Copy" on hover
-                      onMouseLeave={() => setTooltip(null)} // Hide tooltip when mouse leaves
-                      className="flex cursor-pointer gap-4"
-                    >
-                      {shortenAddress(account?.address)} <FaCopy size={18} />
-                    </span>
-
-                    {/* Tooltip */}
-                    {tooltip && !copied && (
-                      <div className="absolute left-1/2 mt-1 -translate-x-1/2 transform rounded border bg-white px-2 py-1 text-sm text-gray-700">
-                        {tooltip}
-                      </div>
-                    )}
-                    {/* "Copied!" Tooltip */}
-                    {copied && (
-                      <div className="absolute left-1/2 mt-1 -translate-x-1/2 transform rounded border bg-white px-2 py-1 text-sm text-green-500">
-                        Copied!
-                      </div>
-                    )}
-                  </span>
-                </div>
-                {/* <div className="mt-6 text-gray-600">
-              Wallet balance:{" "}
-              {isLoading ? (
-                <Loading />
-              ) : (
-                <>
-                  {balance?.displayValue} {balance?.symbol}
-                </>
-              )}
-            </div> */}
-                {/* <Blobbie
-              address={account?.address || "0x"}
-              className="mx-auto mt-4 h-10 w-10"
-            /> */}
-              </div>
-              {/* Joined {joinDate} */}
-            </section>
-          </div>
-
+          <h1 className="text-2xl font-bold">Unnamed</h1>
           <div className="setting cursor-pointer">
             <Dropdown>
               <DropdownTrigger>
                 <Button>
-                  {" "}
                   <BsThreeDots size={24} />
                 </Button>
               </DropdownTrigger>
@@ -246,6 +200,53 @@ const ProfilePage: React.FC = () => {
               </DropdownMenu>
             </Dropdown>
           </div>
+        </div>
+        <div className="flex text-gray-500">
+          {/* Wallet Info Section */}
+          <div className="mt-8">
+            <div className="flex items-center">
+              <FaEthereum className="mr-2 text-xl" /> {/* Ethereum Icon */}
+              <span className="relative">
+                {/* Shortened Address Display */}
+                <span
+                  onClick={handleCopy}
+                  onMouseEnter={() => setTooltip("Copy")} // Show "Copy" on hover
+                  onMouseLeave={() => setTooltip(null)} // Hide tooltip when mouse leaves
+                  className="flex cursor-pointer gap-4"
+                >
+                  {shortenAddress(account?.address)} <FaCopy size={18} />
+                </span>
+
+                {/* Tooltip */}
+                {tooltip && !copied && (
+                  <div className="absolute left-1/2 mt-1 -translate-x-1/2 transform rounded border bg-white px-2 py-1 text-sm text-gray-700">
+                    {tooltip}
+                  </div>
+                )}
+                {/* "Copied!" Tooltip */}
+                {copied && (
+                  <div className="absolute left-1/2 mt-1 -translate-x-1/2 transform rounded border bg-white px-2 py-1 text-sm text-green-500">
+                    Copied!
+                  </div>
+                )}
+              </span>
+            </div>
+            {/* <div className="mt-6 text-gray-600">
+              Wallet balance:{" "}
+              {isLoading ? (
+                <Loading />
+              ) : (
+                <>
+                  {balance?.displayValue} {balance?.symbol}
+                </>
+              )}
+            </div> */}
+            {/* <Blobbie
+              address={account?.address || "0x"}
+              className="mx-auto mt-4 h-10 w-10"
+            /> */}
+          </div>
+          {/* Joined {joinDate} */}
         </div>
       </div>
 
@@ -299,6 +300,13 @@ const ProfilePage: React.FC = () => {
       {/* Items Section */}
       <div className="mt-10 px-4 text-center">
         <div className="mt-10 px-4 text-center">{renderContent()}</div>
+        {/* <p className="text-gray-500">0 items</p>
+        <div className="mt-4">
+          <p className="text-gray-500">No items found for this search</p>
+          <button className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
+            Back to all items
+          </button>
+        </div> */}
       </div>
     </div>
   );
