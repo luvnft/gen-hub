@@ -10,7 +10,7 @@ export default function Page() {
         <BackButton href={"/"} className={"w-fit"} />
         <h1 className={"text-3xl font-bold"}>Create</h1>
         <div className={"flex flex-col gap-4"}>
-          <Link href={"/create/collection"}>
+          <Link href={"/create/collection"} className={"cursor-not-allowed"}>
             <div
               className={
                 "group relative flex w-full items-center justify-between gap-8 rounded-lg border border-gray-50 bg-gray-50 p-6 pr-8 shadow dark:border-neutral-800 dark:bg-neutral-800"

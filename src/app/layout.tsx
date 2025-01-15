@@ -40,13 +40,13 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
-        <NextUIProvider>
         <ThemeProvider>
           <ScrollToTop />
           <Toaster closeButton richColors position="top-left" />
-          <ThirdwebProvider>{children}</ThirdwebProvider>
+          <NextUIProvider>
+            <ThirdwebProvider>{children}</ThirdwebProvider>
+          </NextUIProvider>
         </ThemeProvider>
-        </NextUIProvider>
       </body>
     </html>
   );
