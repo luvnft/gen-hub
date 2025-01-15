@@ -17,6 +17,7 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import MenuSection from "@/components/ui/menu-section";
+import CollectedPage from "./collection";
 
 const ProfilePage: React.FC = () => {
   const account = useActiveAccount();
@@ -78,7 +79,7 @@ const ProfilePage: React.FC = () => {
     if (!address) return "";
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
-// Function copy address
+  // Function copy address
   const [copied, setCopied] = useState(false);
   const [tooltip, setTooltip] = useState<string | null>(null);
   const handleCopy = () => {
@@ -92,13 +93,13 @@ const ProfilePage: React.FC = () => {
       }, 200);
     }
   };
-  // FUNCTION MENU 
+  // FUNCTION MENU
   const [activeMenu, setActiveMenu] = useState<string>("Collected");
 
   const renderContent = () => {
     switch (activeMenu) {
       case "Collected":
-        return <p>Displaying Collected items...</p>;
+        return <CollectedPage />;
       case "Offers made":
         return <p>Displaying Offers made...</p>;
       case "Deals":
@@ -116,9 +117,9 @@ const ProfilePage: React.FC = () => {
   return (
     <div>
       {/* Header Section */}
-      
+
       {/* Cover Section */}
-      <div className="relative h-64 sm:h-60 lg:h-80 rounded-b-md overflow-hidde" >
+      <div className="overflow-hidde relative h-64 rounded-b-md sm:h-60 lg:h-80">
         <img
           src={coverPhoto}
           alt="Cover"
@@ -142,8 +143,8 @@ const ProfilePage: React.FC = () => {
       </div>
 
       {/* Avatar Section */}
-      <div className="relative -mt-32 ml-6 flex ">
-        <div className="relative ">
+      <div className="relative -mt-32 ml-6 flex">
+        <div className="relative">
           <img
             src={avatar}
             alt="Profile"
@@ -168,17 +169,71 @@ const ProfilePage: React.FC = () => {
       </div>
       <div className="mt-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Unnamed</h1>
+          <div className="flex items-center gap-4">
+            <h1 className="text-2xl font-bold">Unnamed</h1>
+            <span> | </span>
+            {/* Address info */}
+            <section className="flex text-500">
+              {/* Wallet Info Section */}
+              <div className="">
+                <div className="flex items-center">
+                  <FaEthereum className="mr-2 text-xl" /> {/* Ethereum Icon */}
+                  <span className="relative">
+                    {/* Shortened Address Display */}
+                    <span
+                      onClick={handleCopy}
+                      onMouseEnter={() => setTooltip("Copy")} // Show "Copy" on hover
+                      onMouseLeave={() => setTooltip(null)} // Hide tooltip when mouse leaves
+                      className="flex cursor-pointer gap-4"
+                    >
+                      {shortenAddress(account?.address)} <FaCopy size={18} />
+                    </span>
+
+                    {/* Tooltip */}
+                    {tooltip && !copied && (
+                      <div className="absolute left-1/2 mt-1 -translate-x-1/2 transform rounded border bg-white px-2 py-1 text-sm text-gray-700">
+                        {tooltip}
+                      </div>
+                    )}
+                    {/* "Copied!" Tooltip */}
+                    {copied && (
+                      <div className="absolute left-1/2 mt-1 -translate-x-1/2 transform rounded border bg-white px-2 py-1 text-sm text-green-500">
+                        Copied!
+                      </div>
+                    )}
+                  </span>
+                </div>
+                {/* <div className="mt-6 text-gray-600">
+              Wallet balance:{" "}
+              {isLoading ? (
+                <Loading />
+              ) : (
+                <>
+                  {balance?.displayValue} {balance?.symbol}
+                </>
+              )}
+            </div> */}
+                {/* <Blobbie
+              address={account?.address || "0x"}
+              className="mx-auto mt-4 h-10 w-10"
+            /> */}
+              </div>
+              {/* Joined {joinDate} */}
+            </section>
+          </div>
+
           <div className="setting cursor-pointer">
             <Dropdown>
               <DropdownTrigger>
-                <Button >
+                <Button>
                   {" "}
                   <BsThreeDots size={24} />
                 </Button>
               </DropdownTrigger>
               <DropdownMenu aria-label="Static Actions">
-                <DropdownItem key="new"><Link href="/profile/setting">Setting</Link></DropdownItem>
+                <DropdownItem key="new">
+                  <Link href="/profile/setting">Setting</Link>
+                </DropdownItem>
                 <DropdownItem key="copy">Copy link</DropdownItem>
                 <DropdownItem key="edit">Edit file</DropdownItem>
                 <DropdownItem
@@ -192,58 +247,11 @@ const ProfilePage: React.FC = () => {
             </Dropdown>
           </div>
         </div>
-        <p className="flex text-gray-500">
-          {/* Wallet Info Section */}
-          <div className="mt-8">
-            <div className="flex items-center">
-              <FaEthereum className="mr-2 text-xl" /> {/* Ethereum Icon */}
-              <span className="relative">
-                {/* Shortened Address Display */}
-                <span
-                  onClick={handleCopy}
-                  onMouseEnter={() => setTooltip("Copy")} // Show "Copy" on hover
-                  onMouseLeave={() => setTooltip(null)} // Hide tooltip when mouse leaves
-                  className="flex cursor-pointer gap-4"
-                >
-                  {shortenAddress(account?.address)} <FaCopy size={18} />
-                </span>
-
-                {/* Tooltip */}
-                {tooltip && !copied && (
-                  <div className="absolute left-1/2 mt-1 -translate-x-1/2 transform rounded border bg-white px-2 py-1 text-sm text-gray-700">
-                    {tooltip}
-                  </div>
-                )}
-                {/* "Copied!" Tooltip */}
-                {copied && (
-                  <div className="absolute left-1/2 mt-1 -translate-x-1/2 transform rounded border bg-white px-2 py-1 text-sm text-green-500">
-                    Copied!
-                  </div>
-                )}
-              </span>
-            </div>
-            {/* <div className="mt-6 text-gray-600">
-              Wallet balance:{" "}
-              {isLoading ? (
-                <Loading />
-              ) : (
-                <>
-                  {balance?.displayValue} {balance?.symbol}
-                </>
-              )}
-            </div> */}
-            {/* <Blobbie
-              address={account?.address || "0x"}
-              className="mx-auto mt-4 h-10 w-10"
-            /> */}
-          </div>
-          {/* Joined {joinDate} */}
-        </p>
       </div>
 
       {/* Navigation Section */}
       <div className="mt-6 flex px-4">
-      <MenuSection
+        <MenuSection
           items={[
             "Collected",
             "Offers made",
@@ -257,7 +265,7 @@ const ProfilePage: React.FC = () => {
           layout="horizontal" // Change to "vertical" for vertical layout
         />
       </div>
-      <hr className="mt-6"/>
+      <hr className="mt-6" />
       {/* Filters Section */}
       {/* <div className="mt-6 flex px-4">
         <div className="flex flex-wrap justify-center space-x-2">
@@ -290,14 +298,7 @@ const ProfilePage: React.FC = () => {
 
       {/* Items Section */}
       <div className="mt-10 px-4 text-center">
-      <div className="mt-10 px-4 text-center">{renderContent()}</div>
-        {/* <p className="text-gray-500">0 items</p>
-        <div className="mt-4">
-          <p className="text-gray-500">No items found for this search</p>
-          <button className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
-            Back to all items
-          </button>
-        </div> */}
+        <div className="mt-10 px-4 text-center">{renderContent()}</div>
       </div>
     </div>
   );
