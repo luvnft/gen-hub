@@ -26,7 +26,7 @@ export default function DashboardLayout({
           transition={{ duration: 0.3 }}
           className="min-h-[calc(100vh-66px)] px-5"
         >
-          <div className="container my-10">{children}</div>
+          <div className="container">{children}</div>
         </motion.div>
       </div>
       {pathname !== "/create" && <Footer />}

@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 import { ThirdwebProvider } from "thirdweb/react";
 import "./globals.scss";
 import React from "react";
+import { NextUIProvider } from "@nextui-org/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,11 +40,13 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
+        <NextUIProvider>
         <ThemeProvider>
           <ScrollToTop />
           <Toaster closeButton richColors position="top-left" />
           <ThirdwebProvider>{children}</ThirdwebProvider>
         </ThemeProvider>
+        </NextUIProvider>
       </body>
     </html>
   );
