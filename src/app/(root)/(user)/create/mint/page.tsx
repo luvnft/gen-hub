@@ -16,7 +16,7 @@ export default function Page() {
   };
 
   return (
-    <div className="flex w-full justify-center">
+    <div className="mt-10 flex w-full justify-center">
       <div className="flex w-full flex-col">
         <div className="flex flex-col-reverse justify-between gap-8 pb-10 md:flex-row">
           <div>

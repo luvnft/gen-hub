@@ -1,5 +1,5 @@
 import React from "react";
-import { MediaRenderer } from "thirdweb/react";
+import { Blobbie, MediaRenderer } from "thirdweb/react";
 import {
   getAllValidListings,
   getAllValidAuctions,
@@ -52,7 +52,7 @@ export default async function Page({
   );
 
   return (
-    <div className="mx-auto mt-32 flex max-w-2xl flex-col gap-16 lg:max-w-full lg:flex-row">
+    <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-16 lg:max-w-full lg:flex-row">
       <div className="flex flex-1 flex-col">
         <MediaRenderer
           src={nft.metadata.image}
@@ -61,7 +61,7 @@ export default async function Page({
         />
         <div className="my-4 flex items-center justify-between">
           <div>
-            <h1 className="mx-4 hyphens-auto break-words text-3xl font-semibold">
+            <h1 className="mx-4 hyphens-auto break-words text-xl font-semibold lg:text-3xl">
               {nft.metadata.name}
             </h1>
             <p className="mx-4 overflow-hidden text-ellipsis whitespace-nowrap">
@@ -71,7 +71,7 @@ export default async function Page({
 
           <div className="flex cursor-pointer items-center gap-4 transition-all hover:opacity-80">
             <div
-              className="h-12 w-12 overflow-hidden rounded-full border-2 border-white/20 opacity-90"
+              className="h-10 w-10 overflow-hidden rounded-full opacity-90 md:h-12 md:w-12"
               style={{
                 background: `linear-gradient(90deg, ${randomColor1}, ${randomColor2})`,
               }}
@@ -93,7 +93,7 @@ export default async function Page({
         </div>
       </div>
 
-      <div className="sticky w-full min-w-[370px] flex-shrink lg:max-w-[450px]">
+      <div className="sticky w-full flex-shrink sm:min-w-[370px] lg:max-w-[550px]">
         <div className="relative mb-6 flex w-full grow flex-col overflow-hidden rounded-lg bg-transparent">
           {/* Pricing information */}
           <div className="w-full rounded-lg bg-white/[.04] p-4">

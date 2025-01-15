@@ -37,7 +37,7 @@ export default function Sell() {
   }, [account]);
 
   return (
-    <div>
+    <div className={"mt-10"}>
       <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">Sell NFTs</h1>
       <div className="my-8">
         {!selectedNft ? (

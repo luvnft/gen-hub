@@ -5,7 +5,7 @@ import { MARKETPLACE, NFT_COLLECTION } from "@/contracts/contracts";
 
 export default function Buy() {
   return (
-    <div className="">
+    <div className="mt-10">
       <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">Buy NFTs</h1>
 
       <div className="my-8">

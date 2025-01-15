@@ -27,7 +27,7 @@ export default function Page() {
   const tokenInfo = useToggle();
 
   return (
-    <div className="flex w-full justify-center">
+    <div className="mt-10 flex w-full justify-center">
       <div className="flex w-full flex-col">
         <BackButton href="/create" className="mb-8 w-fit" />
         <div className="flex grid-cols-6 flex-col-reverse gap-12 md:grid">

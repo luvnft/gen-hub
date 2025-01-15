@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className={"-my-10 grid w-full lg:grid-cols-2"}>
+    <div className={"grid w-full lg:grid-cols-2"}>
       <div className={"flex flex-col gap-4 pt-10 lg:px-16"}>
         <BackButton href={"/"} className={"w-fit"} />
         <h1 className={"text-3xl font-bold"}>Create</h1>
