@@ -23,7 +23,7 @@ export default function MakeOfferButton({
   return (
     <div className="flex flex-col">
       <input
-        className="box-shadow-md mb-4 block w-full rounded-lg border border-white bg-transparent px-4 py-3 text-base"
+        className="box-shadow-md mb-4 block w-full rounded-lg border bg-transparent px-4 py-3 text-base dark:border-white"
         type="number"
         step={0.000001}
         value={bid}
