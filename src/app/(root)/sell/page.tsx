@@ -1,10 +1,8 @@
 "use client";
 
 import { Cross } from "lucide-react";
-
-export const dynamic = "force-dynamic";
 import React, { useEffect, useState } from "react";
-import { useActiveAccount, MediaRenderer } from "thirdweb/react";
+import { MediaRenderer, useActiveAccount } from "thirdweb/react";
 import NFTGrid, { NFTGridLoading } from "@/components/nft/nft-grid";
 import { NFT as NFTType } from "thirdweb";
 import { tokensOfOwner } from "thirdweb/extensions/erc721";
@@ -12,6 +10,8 @@ import SaleInfo from "../../../components/sale-info";
 import client from "@/lib/client";
 import { NFT_COLLECTION } from "@/contracts/contracts";
 import { toast } from "sonner";
+
+export const dynamic = "force-dynamic";
 
 export default function Sell() {
   const [loading, setLoading] = useState(false);

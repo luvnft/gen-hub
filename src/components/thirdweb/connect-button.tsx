@@ -82,7 +82,6 @@ const ConnectButton: React.FC<ThirdwebButtonProps> = ({
                   chain={POLYGON_ZKEVM_CARDONA_TESTNET}
                   loadingComponent={<Loading />}
                   fallbackComponent={<div>Failed to load</div>}
-                  formatFn={format}
                 />
               </motion.div>
             </AccountProvider>

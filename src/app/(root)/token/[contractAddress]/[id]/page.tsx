@@ -14,20 +14,24 @@ import Events from "@/components/token/events";
 
 const [randomColor1, randomColor2] = [randomColor(), randomColor()];
 
-export default async function TokenPage({
+export default async function Page({
   params,
 }: {
-  params: { contractAddress: string; tokenId: string };
+  params: Promise<{ contractAddress: string; id: number }>;
 }) {
+  const { contractAddress, id } = await params;
+  console.log(contractAddress + " " + id);
+
   const listingsPromise = getAllValidListings({
     contract: MARKETPLACE,
   });
   const auctionsPromise = getAllValidAuctions({
     contract: MARKETPLACE,
   });
+
   const nftPromise = getNFT({
     contract: NFT_COLLECTION,
-    tokenId: BigInt(params.tokenId),
+    tokenId: BigInt(id),
     includeOwner: true,
   });
 
@@ -39,14 +43,12 @@ export default async function TokenPage({
 
   const directListing = listings?.find(
     (l) =>
-      l.assetContractAddress === params.contractAddress &&
-      l.tokenId === BigInt(params.tokenId)
+      l.assetContractAddress === contractAddress && l.tokenId === BigInt(id)
   );
 
   const auctionListing = auctions?.find(
     (a) =>
-      a.assetContractAddress === params.contractAddress &&
-      a.tokenId === BigInt(params.tokenId)
+      a.assetContractAddress === contractAddress && a.tokenId === BigInt(id)
   );
 
   return (
