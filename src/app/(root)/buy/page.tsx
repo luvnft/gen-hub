@@ -6,7 +6,7 @@ import { MARKETPLACE, NFT_COLLECTION } from "@/contracts/contracts";
 export default function Buy() {
   return (
     <div className="">
-      <h1 className="text-4xl">Buy NFTs</h1>
+      <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">Buy NFTs</h1>
 
       <div className="my-8">
         <Suspense fallback={<NFTGridLoading />}>
@@ -14,7 +14,7 @@ export default function Buy() {
             marketplace={MARKETPLACE}
             collection={NFT_COLLECTION}
             emptyText={
-              "Looks like there are no listed NFTs in this collection. Did you import your contract on the thirdweb dashboard? https://thirdweb.com/dashboard"
+              "Looks like there are no listed NFTs in this collection. Check back later!"
             }
           />
         </Suspense>

@@ -142,7 +142,7 @@ const ProfilePage: React.FC = () => {
       </div>
 
       {/* Avatar Section */}
-      <div className="relative -mt-32 ml-6 flex justify-start sm:justify-center">
+      <div className="relative -mt-32 ml-6 flex ">
         <div className="relative ">
           <img
             src={avatar}

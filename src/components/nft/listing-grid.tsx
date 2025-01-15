@@ -10,6 +10,7 @@ import {
 import { NFT as NFTType, ThirdwebContract } from "thirdweb";
 import { MARKETPLACE, NFT_COLLECTION } from "@/contracts/contracts";
 import NFTGrid, { NFTGridLoading } from "@/components/nft/nft-grid";
+import { toast } from "sonner";
 
 type Props = {
   marketplace: ThirdwebContract;
@@ -67,10 +68,14 @@ const ListingGrid: React.FC<Props> = (props) => {
   };
 
   useEffect(() => {
-    fetchData(); // Fetch data initially
+    fetchData()
+      .then(() => {})
+      .catch((Error) => toast.error("Error fetch data") + Error); // Fetch data initially
 
     const interval = setInterval(() => {
-      fetchData();
+      fetchData()
+        .then(() => {})
+        .catch((Error) => toast.error("Error fetch data") + Error);
     }, 10000); // Fetch data every 10 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
