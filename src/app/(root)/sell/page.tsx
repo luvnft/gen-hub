@@ -1,15 +1,16 @@
 "use client";
 
-import { Cross } from "lucide-react";
+import { toast } from "sonner";
+export const dynamic = "force-dynamic";
 import React, { useEffect, useState } from "react";
-import { MediaRenderer, useActiveAccount } from "thirdweb/react";
+import { useActiveAccount, MediaRenderer } from "thirdweb/react";
 import NFTGrid, { NFTGridLoading } from "@/components/nft/nft-grid";
 import { NFT as NFTType } from "thirdweb";
 import { tokensOfOwner } from "thirdweb/extensions/erc721";
-import SaleInfo from "../../../components/sale-info";
+import SaleInfo from "@/components/sale-info";
 import client from "@/lib/client";
 import { NFT_COLLECTION } from "@/contracts/contracts";
-import { toast } from "sonner";
+import { Cross1Icon } from "@radix-ui/react-icons";
 
 export default function Sell() {
   const [loading, setLoading] = useState(false);
@@ -17,13 +18,12 @@ export default function Sell() {
   const [selectedNft, setSelectedNft] = useState<NFTType>();
 
   const account = useActiveAccount();
-
   useEffect(() => {
     if (account) {
       setLoading(true);
       tokensOfOwner({
         contract: NFT_COLLECTION,
-        owner: account?.address,
+        owner: account.address,
       })
         .then(setOwnedTokenIds)
         .catch((err) => {
@@ -37,8 +37,8 @@ export default function Sell() {
   }, [account]);
 
   return (
-    <div className={"mt-10"}>
-      <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">Sell NFTs</h1>
+    <div>
+      <h1 className="text-4xl">Sell NFTs</h1>
       <div className="my-8">
         {!selectedNft ? (
           <>
@@ -75,7 +75,7 @@ export default function Sell() {
                   }}
                   className="absolute right-0 top-0 m-3 cursor-pointer transition-all hover:scale-110"
                 >
-                  <Cross className="h-6 w-6" />
+                  <Cross1Icon className="h-6 w-6" />
                 </button>
               </div>
             </div>

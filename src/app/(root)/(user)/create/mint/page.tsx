@@ -6,9 +6,7 @@ import Loading from "@/components/common/loading";
 import { Plus } from "lucide-react";
 import BackButton from "@/components/common/back-button";
 import { TransactionButton, useActiveAccount } from "thirdweb/react";
-import { getContract } from "thirdweb";
 import { mintTo } from "thirdweb/extensions/erc721";
-import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
 import { NFT_COLLECTION } from "@/contracts/contracts";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -29,12 +27,6 @@ export default function Page() {
   if (!account) return <div>Please connect your wallet</div>;
 
   const address: string = account.address;
-
-  const contract = getContract({
-    client: client,
-    address: NFT_COLLECTION.address,
-    chain: POLYGON_ZKEVM_CARDONA_TESTNET,
-  });
 
   return (
     <div className="my-10 flex w-full justify-center">
@@ -105,7 +97,7 @@ export default function Page() {
                     name="name"
                     id="name"
                     placeholder="Name your NFT"
-                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
+                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark dark:text-white sm:text-sm/6"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -126,7 +118,7 @@ export default function Page() {
                     name="supply"
                     id="supply"
                     placeholder="1"
-                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
+                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark dark:text-white sm:text-sm/6"
                     required
                     value={supply}
                     onChange={(e) => setSupply(Number(e.target.value))}
@@ -146,7 +138,7 @@ export default function Page() {
                     name="description"
                     id="description"
                     rows={3}
-                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
+                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark dark:text-white sm:text-sm/6"
                     required
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -163,7 +155,7 @@ export default function Page() {
                     image: files,
                   };
                   return mintTo({
-                    contract,
+                    contract: NFT_COLLECTION,
                     to: address,
                     nft: metadata,
                   });
