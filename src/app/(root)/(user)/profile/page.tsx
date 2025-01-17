@@ -146,7 +146,6 @@ const ProfilePage: React.FC = () => {
       {/* Avatar Section */}
       <div className="relative -mt-32 ml-6 flex">
         <div className="relative">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           {/*<img*/}
           {/*  src={avatar}*/}
           {/*  alt="Profile"*/}
@@ -156,7 +155,7 @@ const ProfilePage: React.FC = () => {
           <Blobbie
             address={`${account?.address}`}
             className={
-              "h-48 w-48  sm:h-48 sm:w-48 rounded-full border-4 border-white object-cover"
+              "h-48 w-48 rounded-full border-4 border-white object-cover sm:h-48 sm:w-48"
             }
           />
           <input
@@ -175,9 +174,9 @@ const ProfilePage: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className=" mt-4">
+      <div className="mt-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4  flex-wrap">
+          <div className="flex flex-wrap items-center gap-4">
             <h1 className="text-2xl font-bold">Unnamed</h1>
             <span> | </span>
             {/* Address info */}
@@ -226,7 +225,6 @@ const ProfilePage: React.FC = () => {
                 <DropdownItem key="new">
                   <Link href="/profile/setting">Setting</Link>
                 </DropdownItem>
-
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -234,7 +232,7 @@ const ProfilePage: React.FC = () => {
       </div>
 
       {/* Navigation Section */}
-      <div className="mt-6 flex overflow-auto ">
+      <div className="mt-6 flex overflow-auto">
         <MenuSection
           items={[
             "Collected",
@@ -250,10 +248,9 @@ const ProfilePage: React.FC = () => {
           layout="horizontal" // Change to "vertical" for vertical layout
         />
       </div>
-      <hr className="mt-6" />    
+      <hr className="mt-6" />
       {/* Items Section */}
       <div className="mt-10 text-center">{renderContent()}</div>
-     
     </div>
   );
 };

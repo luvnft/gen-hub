@@ -3,6 +3,9 @@ import React, { Suspense } from "react";
 import ListingGrid from "@/components/nft/listing-grid";
 import { MARKETPLACE, NFT_COLLECTION } from "@/contracts/contracts";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default function Buy() {
   return (
     <div className="mt-10">

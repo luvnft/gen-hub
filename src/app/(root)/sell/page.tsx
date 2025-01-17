@@ -1,7 +1,6 @@
 "use client";
 
 import { toast } from "sonner";
-export const dynamic = "force-dynamic";
 import React, { useEffect, useState } from "react";
 import { useActiveAccount, MediaRenderer } from "thirdweb/react";
 import NFTGrid, { NFTGridLoading } from "@/components/nft/nft-grid";
@@ -11,6 +10,9 @@ import SaleInfo from "@/components/sale-info";
 import client from "@/lib/client";
 import { NFT_COLLECTION } from "@/contracts/contracts";
 import { Cross1Icon } from "@radix-ui/react-icons";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default function Sell() {
   const [loading, setLoading] = useState(false);

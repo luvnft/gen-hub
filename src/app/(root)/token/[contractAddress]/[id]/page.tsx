@@ -12,6 +12,9 @@ import BuyListingButton from "@/components/token/buy-listing-button";
 import MakeOfferButton from "@/components/token/make-offer-button";
 import Events from "@/components/token/events";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const [randomColor1, randomColor2] = [randomColor(), randomColor()];
 
 export default async function Page({

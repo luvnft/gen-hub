@@ -15,7 +15,7 @@ if (!address_marketplace_contract)
   throw new Error("No contract address provided");
 if (!address_collection_contract)
   throw new Error("No contract address provided");
-// if (!secretKey) throw new Error("No secret key provided");
+if (!secretKey) throw new Error("No secret key provided");
 
 export const POLYGON_ZKEVM_CARDONA_TESTNET = defineChain({
   id: 2442,
