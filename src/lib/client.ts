@@ -4,18 +4,13 @@ import { createThirdwebClient, defineChain } from "thirdweb";
 // refer to https://portal.thirdweb.com/typescript/v5/client on how to get a client ID
 
 export const address_marketplace_contract =
-  process.env.NEXT_PUBLIC_MARKETPLACE_CONTRACT_ADDRESS;
+  "0xa60616B4570460e17b774f10e09069F9De6869d4";
 export const address_collection_contract =
-  process.env.NEXT_PUBLIC_COLLECTION_CONTRACT_ADDRESS;
-const clientId = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_API;
-const secretKey = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_SECRET;
+  "0x6B76De4C44E51154f4ed0E6720b81157220582A8";
+const clientId = process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID;
+const secretKey = process.env.TW_SECRET_KEY;
 
 if (!clientId) throw new Error("No client ID provided");
-if (!address_marketplace_contract)
-  throw new Error("No contract address provided");
-if (!address_collection_contract)
-  throw new Error("No contract address provided");
-if (!secretKey) throw new Error("No secret key provided");
 
 export const POLYGON_ZKEVM_CARDONA_TESTNET = defineChain({
   id: 2442,
