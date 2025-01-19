@@ -1,8 +1,7 @@
 "use client";
 
 import { useActiveWallet, useNetworkSwitcherModal } from "thirdweb/react";
-import { ethereum, sepolia } from "thirdweb/chains";
-import { client } from "@/lib/client";
+import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
 import { toast } from "sonner";
 import React from "react";
 import { ThirdwebButtonProps } from "@/type/type";
@@ -30,11 +29,11 @@ const NetworkSwitcher: React.FC<ThirdwebButtonProps> = ({
         sections: [
           {
             label: "Popular",
-            chains: [ethereum, sepolia],
+            chains: [POLYGON_ZKEVM_CARDONA_TESTNET],
           },
         ],
       })
-      .then((r) => console.log("switched to", r));
+      .then(() => {});
   }
 
   return (

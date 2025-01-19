@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 import { ThirdwebProvider } from "thirdweb/react";
 import "./globals.scss";
 import React from "react";
+import { NextUIProvider } from "@nextui-org/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,6 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Generative Hub App",
   description: "Generative Hub App: Powered by Forma NFTs",
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
@@ -42,7 +44,9 @@ export default function RootLayout({
         <ThemeProvider>
           <ScrollToTop />
           <Toaster closeButton richColors position="top-left" />
-          <ThirdwebProvider>{children}</ThirdwebProvider>
+          <NextUIProvider>
+            <ThirdwebProvider>{children}</ThirdwebProvider>
+          </NextUIProvider>
         </ThemeProvider>
       </body>
     </html>

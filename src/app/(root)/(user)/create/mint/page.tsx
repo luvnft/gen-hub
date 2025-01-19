@@ -2,21 +2,34 @@
 
 import { Suspense, useState } from "react";
 import { FileUpload } from "@/components/ui/file-upload";
-import ButtonGradiant from "@/components/ui/button-gradiant";
 import Loading from "@/components/common/loading";
 import { Plus } from "lucide-react";
 import BackButton from "@/components/common/back-button";
+import { TransactionButton, useActiveAccount } from "thirdweb/react";
+import { mintTo } from "thirdweb/extensions/erc721";
+import { NFT_COLLECTION } from "@/contracts/contracts";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const router = useRouter();
   const [files, setFiles] = useState<File>();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [supply, setSupply] = useState(1);
+  const account = useActiveAccount();
+
   const handleFileUpload = (files: File) => {
     setFiles(files);
     console.log(files);
   };
 
+  if (!account) return <div>Please connect your wallet</div>;
+
+  const address: string = account.address;
+
   return (
-    <div className="flex w-full justify-center">
+    <div className="my-10 flex w-full justify-center">
       <div className="flex w-full flex-col">
         <div className="flex flex-col-reverse justify-between gap-8 pb-10 md:flex-row">
           <div>
@@ -38,7 +51,16 @@ export default function Page() {
           </div>
 
           <div className="flex-1">
-            <form className="flex flex-col gap-8">
+            <form
+              className="flex flex-col gap-8"
+              onSubmit={(e) => {
+                e.preventDefault();
+                setName("");
+                setDescription("");
+                setSupply(1);
+                setFiles(undefined);
+              }}
+            >
               <div>
                 <label
                   htmlFor="collection"
@@ -75,8 +97,10 @@ export default function Page() {
                     name="name"
                     id="name"
                     placeholder="Name your NFT"
-                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
+                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark dark:text-white sm:text-sm/6"
                     required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
               </div>
@@ -90,13 +114,14 @@ export default function Page() {
                 </label>
                 <div className="mt-2">
                   <input
-                    type="text"
+                    type="number"
                     name="supply"
                     id="supply"
                     placeholder="1"
-                    defaultValue={1}
-                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
+                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark dark:text-white sm:text-sm/6"
                     required
+                    value={supply}
+                    onChange={(e) => setSupply(Number(e.target.value))}
                   />
                 </div>
               </div>
@@ -113,14 +138,43 @@ export default function Page() {
                     name="description"
                     id="description"
                     rows={3}
-                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark sm:text-sm/6"
-                    defaultValue={""}
+                    className="w-full rounded-md bg-background px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-background-dark dark:text-white sm:text-sm/6"
                     required
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
                 <p className="mt-3 text-sm/6">Write a few description about.</p>
               </div>
-              <ButtonGradiant text="Mint NFT" />
+              <TransactionButton
+                transaction={() => {
+                  toast.info("Minting NFT...");
+                  const metadata = {
+                    name,
+                    description,
+                    image: files,
+                  };
+                  return mintTo({
+                    contract: NFT_COLLECTION,
+                    to: address,
+                    nft: metadata,
+                  });
+                }}
+                onTransactionSent={() => {
+                  toast.info("Offer Sent!");
+                }}
+                onTransactionConfirmed={() => {
+                  toast.success("Offer Placed Successfully!");
+                  setTimeout(() => {
+                    router.push("/profile");
+                  }, 2000);
+                }}
+                onError={(error) => {
+                  toast.error("Error making offer: " + error.message);
+                }}
+              >
+                Mint NFT
+              </TransactionButton>
             </form>
           </div>
         </div>
