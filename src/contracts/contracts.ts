@@ -21,5 +21,3 @@ export const NFT_COLLECTION = getContract({
   address: address_collection_contract,
 });
 
-// (Optional) Set up the URL of where users can view transactions on
-export const POLYGONSCAN_URL = "https://cardona-zkevm.polygonscan.com";

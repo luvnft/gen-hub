@@ -34,4 +34,50 @@ export const POLYGON_ZKEVM_CARDONA_TESTNET = defineChain({
   testnet: true,
 });
 
+export const CELESTIA_MOCHA_TESTNET = defineChain({
+  id: 1234, // Replace with the actual ID for Celestia Mocha Testnet
+  name: "Celestia Mocha Testnet",
+  nativeCurrency: {
+    name: "TIA",
+    symbol: "TIA",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://rpc.mocha.celestia.org"],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: "CelestiaScan",
+      url: "https://mocha.celestiascan.org",
+    },
+  },
+  testnet: true,
+});
+
+export const FORMA_SKETCHPAD = defineChain({
+  id: 984123, // Replace with the actual ID for Forma Sketchpad
+  name: "Forma Sketchpad",
+  nativeCurrency: {
+    name: "FORMA",
+    symbol: "FORMA",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://rpc.sketchpad.forma.org"],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: "FormaScan",
+      url: "https://sketchpad.formascan.org",
+    },
+  },
+  testnet: true,
+});
+
+export const POLYGONSCAN_URL = "https://cardona-zkevm.polygonscan.com";
+
 export default createThirdwebClient(secretKey ? { secretKey } : { clientId });
