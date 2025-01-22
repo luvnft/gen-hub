@@ -16,6 +16,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { FaCamera, FaCopy, FaEthereum } from "react-icons/fa";
 import { Blobbie, useActiveAccount, useWalletBalance } from "thirdweb/react";
 import CollectedPage from "@/app/(root)/(user)/profile/collection";
+import BackButton from "@/components/common/back-button";
 
 const ProfilePage: React.FC = () => {
   const account = useActiveAccount();
@@ -116,6 +117,7 @@ const ProfilePage: React.FC = () => {
   };
   return (
     <div>
+      <BackButton className="h-fit" />
       {/* Header Section */}
 
       {/* Cover Section */}
