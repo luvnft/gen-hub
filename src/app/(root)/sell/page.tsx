@@ -1,16 +1,17 @@
 "use client";
 
-import { toast } from "sonner";
-export const dynamic = "force-dynamic";
-import React, { useEffect, useState } from "react";
-import { useActiveAccount, MediaRenderer } from "thirdweb/react";
 import NFTGrid, { NFTGridLoading } from "@/components/nft/nft-grid";
+import SaleInfo from "@/components/sale-info";
+import { NFT_COLLECTION } from "@/contracts/contracts";
+import client from "@/lib/client";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { NFT as NFTType } from "thirdweb";
 import { tokensOfOwner } from "thirdweb/extensions/erc721";
-import SaleInfo from "@/components/sale-info";
-import client from "@/lib/client";
-import { NFT_COLLECTION } from "@/contracts/contracts";
-import { Cross1Icon } from "@radix-ui/react-icons";
+import { MediaRenderer, useActiveAccount } from "thirdweb/react";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default function Sell() {
   const [loading, setLoading] = useState(false);
@@ -75,7 +76,7 @@ export default function Sell() {
                   }}
                   className="absolute right-0 top-0 m-3 cursor-pointer transition-all hover:scale-110"
                 >
-                  <Cross1Icon className="h-6 w-6" />
+                  {/* <Cross1Icon className="h-6 w-6" /> */}
                 </button>
               </div>
             </div>
