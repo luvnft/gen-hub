@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: NeueMontreal, sans-serif;
+}
+
+.static {
+  position: static !important;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::selection {
+  background-color: rgb(143, 199, 255);
+  color: white;
+}
+
+@font-face {
+  src: url("../font/NeueMontreal.woff");
+  font-family: NeueMontreal;
+}
