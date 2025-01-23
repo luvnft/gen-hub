@@ -44,7 +44,7 @@ export default function NFTComponent({
 
   return (
     <div
-      className="flex h-[350px] w-full cursor-pointer flex-col justify-stretch overflow-hidden rounded-lg border border-white/10 bg-white/[.04] transition-all hover:scale-105 hover:shadow-lg"
+      className="flex h-[400px] w-full cursor-pointer flex-col justify-stretch overflow-hidden rounded-lg border border-white/10 bg-white/[.04] transition-all hover:scale-105 hover:shadow-lg"
       onClick={
         overrideOnclickBehavior
           ? () => overrideOnclickBehavior(nft!)
@@ -54,12 +54,13 @@ export default function NFTComponent({
               )
       }
     >
-      <div className="relative h-64 w-full overflow-hidden bg-white/[.04]">
+      <div className="relative w-full overflow-hidden bg-white/[.04]">
         {nft.metadata.image && (
           <MediaRenderer
             src={nft.metadata.image}
             client={client}
             className="object-cover object-center"
+            style={{ minHeight: "100%", width: "100%" }}
           />
         )}
       </div>
