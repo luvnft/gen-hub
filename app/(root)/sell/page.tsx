@@ -14,7 +14,6 @@ import {
   useActiveAccount,
   useReadContract,
 } from "thirdweb/react";
-import { Cross } from "lucide-react";
 import BackButton from "@/components/common/back-button";
 
 export const dynamic = "force-dynamic";
@@ -80,7 +79,7 @@ export default function Sell() {
                   onClick={() => setSelectedNft(item)}
                   key={item.id}
                   // href={`/collection/${nftContract.chain.id}/${nftContract.address}/token/${item.id.toString()}`}
-                  className="block rounded-lg p-4 hover:no-underline"
+                  className="block cursor-pointer rounded-lg p-4 hover:no-underline"
                 >
                   <div className="flex flex-col">
                     <MediaRenderer client={client} src={item.metadata.image} />
@@ -97,20 +96,12 @@ export default function Sell() {
         ) : (
           <div className="mt-0 flex max-w-full gap-8">
             <div className="flex w-full flex-col">
-              <div className="relative">
+              <div>
                 <MediaRenderer
                   client={client}
                   src={selectedNft.metadata.image}
                   className="!h-auto !w-full rounded-lg bg-white/[.04]"
                 />
-                <button
-                  onClick={() => {
-                    setSelectedNft(undefined);
-                  }}
-                  className="absolute right-0 top-0 m-3 cursor-pointer transition-all hover:scale-110"
-                >
-                  <Cross size={24} />
-                </button>
               </div>
             </div>
 
@@ -127,6 +118,16 @@ export default function Sell() {
 
               <div className="relative flex flex-1 flex-col overflow-hidden rounded-lg bg-transparent py-4">
                 <SaleInfo nft={selectedNft} />
+              </div>
+              <div
+                className={
+                  "flex w-full cursor-pointer items-center justify-center rounded-md bg-gray-200 py-3 text-sm text-black"
+                }
+                onClick={() => {
+                  setSelectedNft(undefined);
+                }}
+              >
+                Cancel
               </div>
             </div>
           </div>
