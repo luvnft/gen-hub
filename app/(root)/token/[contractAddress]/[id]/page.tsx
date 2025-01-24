@@ -1,21 +1,19 @@
 import React from "react";
-import { MediaRenderer } from "thirdweb/react";
+import { Blobbie, MediaRenderer } from "thirdweb/react";
 import {
   getAllValidAuctions,
   getAllValidListings,
 } from "thirdweb/extensions/marketplace";
 import { MARKETPLACE, NFT_COLLECTION } from "@/contracts";
-import randomColor from "@/lib/utils";
 import { getNFT } from "thirdweb/extensions/erc721";
 import client from "@/lib/client";
 import BuyListingButton from "@/components/token/buy-listing-button";
 import MakeOfferButton from "@/components/token/make-offer-button";
 import Events from "@/components/token/events";
+import BackButton from "@/components/common/back-button";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-
-const [randomColor1, randomColor2] = [randomColor(), randomColor()];
 
 export default async function Page({
   params,
@@ -44,6 +42,10 @@ export default async function Page({
     nftPromise,
   ]);
 
+  if (nft.owner === null) {
+    nft.owner = "0x";
+  }
+
   const directListing = listings?.find(
     (l) =>
       l.assetContractAddress === contractAddress && l.tokenId === BigInt(id)
@@ -57,6 +59,7 @@ export default async function Page({
   return (
     <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-16 lg:max-w-full lg:flex-row">
       <div className="flex flex-1 flex-col">
+        <BackButton className="mb-4 h-fit" href={"/buy"} />
         <MediaRenderer
           src={nft.metadata.image}
           client={client}
@@ -73,11 +76,9 @@ export default async function Page({
           </div>
 
           <div className="flex cursor-pointer items-center gap-4 transition-all hover:opacity-80">
-            <div
+            <Blobbie
+              address={nft.owner}
               className="h-10 w-10 overflow-hidden rounded-full opacity-90 md:h-12 md:w-12"
-              style={{
-                background: `linear-gradient(90deg, ${randomColor1}, ${randomColor2})`,
-              }}
             />
             {nft.owner && (
               <div className="flex flex-col">

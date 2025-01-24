@@ -14,9 +14,9 @@ import { useRouter } from "next/navigation";
 export default function Page() {
   const router = useRouter();
   const [files, setFiles] = useState<File>();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [supply, setSupply] = useState(1);
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [supply, setSupply] = useState<number>(1);
   const account = useActiveAccount();
 
   const handleFileUpload = (files: File) => {
