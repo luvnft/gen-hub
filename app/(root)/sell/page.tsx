@@ -1,45 +1,66 @@
 "use client";
 
-import NFTGrid, { NFTGridLoading } from "@/components/nft/nft-grid";
 import SaleInfo from "@/components/sale-info";
 import { NFT_COLLECTION } from "@/contracts";
 import client from "@/lib/client";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
+import { useState } from "react";
 import { NFT as NFTType } from "thirdweb";
-import { tokensOfOwner } from "thirdweb/extensions/erc721";
-import { MediaRenderer, useActiveAccount } from "thirdweb/react";
+import {
+  getNFTs as getNFTs721,
+  tokensOfOwner,
+} from "thirdweb/extensions/erc721";
+import {
+  MediaRenderer,
+  useActiveAccount,
+  useReadContract,
+} from "thirdweb/react";
 import { Cross } from "lucide-react";
 import BackButton from "@/components/common/back-button";
 
 export const dynamic = "force-dynamic";
 
 export default function Sell() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [ownedTokenIds, setOwnedTokenIds] = useState<readonly bigint[]>([]);
   const [selectedNft, setSelectedNft] = useState<NFTType>();
 
   const account = useActiveAccount();
-  useEffect(() => {
-    if (account) {
-      setLoading(true);
-      tokensOfOwner({
-        contract: NFT_COLLECTION,
-        owner: account.address,
-      })
-        .then(setOwnedTokenIds)
-        .catch((err) => {
-          // Log the full error object for debugging
-          console.error("Error fetching NFTs:", err);
+  // useEffect(() => {
+  //   if (account) {
+  //     setLoading(true);
+  //     tokensOfOwner({
+  //       contract: NFT_COLLECTION,
+  //       owner: account.address,
+  //     })
+  //       .then((tokens) => {
+  //         setOwnedTokenIds(tokens);
+  //         console.log("hello", tokens);
+  //       })
+  //       .catch((err) => {
+  //         // Log the full error object for debugging
+  //         console.error("Error fetching NFTs:", err);
+  //
+  //         // Display a user-friendly error message
+  //         toast.error("Something went wrong while fetching your NFTs!");
+  //       })
+  //       .finally(() => {
+  //         setLoading(false);
+  //       });
+  //   }
+  // }, [account]);
 
-          // Display a user-friendly error message
-          toast.error("Something went wrong while fetching your NFTs!");
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  }, [account]);
+  const { data: allNFTs } = useReadContract(getNFTs721, {
+    contract: NFT_COLLECTION,
+    includeOwners: true,
+  });
+
+  const { data: ownedNFTs } = useReadContract(tokensOfOwner, {
+    contract: NFT_COLLECTION,
+    owner: "0x2349Db8bdf85bd80bFc4afb715a69fb4C6463B96",
+  });
+
+  console.log("1", allNFTs);
+  console.log("2", ownedNFTs);
 
   return (
     <div className={"mt-10"}>
@@ -52,25 +73,27 @@ export default function Sell() {
 
       <div className="my-8">
         {!selectedNft ? (
-          <>
-            {loading ? (
-              <NFTGridLoading />
+          <div className={"grid grid-cols-4 gap-4"}>
+            {allNFTs && allNFTs.length > 0 ? (
+              allNFTs.map((item) => (
+                <div
+                  onClick={() => setSelectedNft(item)}
+                  key={item.id}
+                  // href={`/collection/${nftContract.chain.id}/${nftContract.address}/token/${item.id.toString()}`}
+                  className="block rounded-lg p-4 hover:no-underline"
+                >
+                  <div className="flex flex-col">
+                    <MediaRenderer client={client} src={item.metadata.image} />
+                    <p className="mt-2 text-center">
+                      {item.metadata?.name ?? "Unknown item"}
+                    </p>
+                  </div>
+                </div>
+              ))
             ) : (
-              <NFTGrid
-                nftData={ownedTokenIds.map((tokenId) => ({
-                  tokenId,
-                }))}
-                overrideOnclickBehavior={(nft) => {
-                  setSelectedNft(nft);
-                }}
-                emptyText={
-                  !account
-                    ? "Connect your wallet to list your NFTs!"
-                    : "Looks like you don't own any NFTs in this collection. Head to the buy page to buy some!"
-                }
-              />
+              <div className="mx-auto text-center">Loading...</div>
             )}
-          </>
+          </div>
         ) : (
           <div className="mt-0 flex max-w-full gap-8">
             <div className="flex w-full flex-col">
@@ -98,7 +121,7 @@ export default function Sell() {
               <p className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
                 #{selectedNft.id.toString()}
               </p>
-              <p className="text-white/60">
+              <p className="text-text dark:text-white/60">
                 You&rsquo;re about to list the following item for sale.
               </p>
 
