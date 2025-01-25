@@ -1,7 +1,8 @@
 import client, {
   address_collection_contract,
   address_marketplace_contract,
-  POLYGON_ZKEVM_CARDONA_TESTNET,
+  BASE_CHAIN, 
+  POLYGON_MAINNET,
 } from "@/lib/client";
 import { getContract } from "thirdweb";
 
@@ -11,13 +12,12 @@ import { getContract } from "thirdweb";
 
 export const MARKETPLACE = getContract({
   client,
-  chain: POLYGON_ZKEVM_CARDONA_TESTNET,
+  chain: BASE_CHAIN, // Use BASE_CHAIN for Base
   address: address_marketplace_contract,
 });
 
 export const NFT_COLLECTION = getContract({
   client,
-  chain: POLYGON_ZKEVM_CARDONA_TESTNET,
+  chain: POLYGON_MAINNET, // Use POLYGON_MAINNET for Polygon
   address: address_collection_contract,
 });
-

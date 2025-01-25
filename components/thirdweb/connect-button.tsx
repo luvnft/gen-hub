@@ -1,6 +1,6 @@
 "use client";
 
-import client, { POLYGON_ZKEVM_CARDONA_TESTNET } from "@/lib/client";
+import client, { BASE_CHAIN } from "@/lib/client"; // Import BASE_CHAIN
 import {
   AccountBalance,
   AccountProvider,
@@ -26,7 +26,7 @@ const ConnectButton: React.FC<ThirdwebButtonProps> = ({
   const handleConnect = async () => {
     const wallet = await connect({
       client,
-      chain: POLYGON_ZKEVM_CARDONA_TESTNET,
+      chain: BASE_CHAIN, // Use BASE_CHAIN for Base mainnet
       showThirdwebBranding: false,
       appMetadata: {
         name: "Generative Hub App",
@@ -79,7 +79,7 @@ const ConnectButton: React.FC<ThirdwebButtonProps> = ({
             <AccountProvider address={`${account?.address}`} client={client}>
               <motion.div layout>
                 <AccountBalance
-                  chain={POLYGON_ZKEVM_CARDONA_TESTNET}
+                  chain={BASE_CHAIN} // Use BASE_CHAIN for Base mainnet
                   loadingComponent={<Loading />}
                   fallbackComponent={<div>Failed to load</div>}
                 />

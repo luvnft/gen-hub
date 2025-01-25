@@ -4,17 +4,18 @@ import { createThirdwebClient, defineChain } from "thirdweb";
 // refer to https://portal.thirdweb.com/typescript/v5/client on how to get a client ID
 
 export const address_marketplace_contract =
-  "0xa60616B4570460e17b774f10e09069F9De6869d4";
+  "0xcc85af4E1EFB3F8A378D20016020124917206E4b";
 export const address_collection_contract =
-  "0x6B76De4C44E51154f4ed0E6720b81157220582A8";
+  "0x3c15C3b89FfA36743F4aFD1da65369Ab02d4c39e";
 const clientId = process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID;
 const secretKey = process.env.TW_SECRET_KEY;
 
 if (!clientId) throw new Error("No client ID provided");
 
-export const POLYGON_ZKEVM_CARDONA_TESTNET = defineChain({
-  id: 2442,
-  name: "Polygon zkEVM Cardona Testnet",
+// Base chain (assuming Ethereum mainnet)
+export const BASE_CHAIN = defineChain({
+  id: 1, // Ethereum mainnet chain ID
+  name: "Ethereum Mainnet",
   nativeCurrency: {
     name: "ETH",
     symbol: "ETH",
@@ -22,63 +23,39 @@ export const POLYGON_ZKEVM_CARDONA_TESTNET = defineChain({
   },
   rpcUrls: {
     default: {
-      http: ["https://rpc.cardona.zkevm-rpc.com"],
+      http: ["https://base-mainnet.infura.io/v3/5c1f72b4e68044e6a3aa7a68ee3a4a19"], // Replace with your Infura key
     },
   },
   blockExplorers: {
     default: {
-      name: "PolygonScan",
-      url: "https://cardona-zkevm.polygonscan.com",
+      name: "Etherscan",
+      url: "https://etherscan.io",
     },
   },
-  testnet: true,
 });
 
-export const CELESTIA_MOCHA_TESTNET = defineChain({
-  id: 1234, // Replace with the actual ID for Celestia Mocha Testnet
-  name: "Celestia Mocha Testnet",
+// Polygon mainnet
+export const POLYGON_MAINNET = defineChain({
+  id: 137,
+  name: "Polygon Mainnet",
   nativeCurrency: {
-    name: "TIA",
-    symbol: "TIA",
+    name: "MATIC",
+    symbol: "MATIC",
     decimals: 18,
   },
   rpcUrls: {
     default: {
-      http: ["https://rpc.mocha.celestia.org"],
+      http: ["https://polygon-rpc.com/"],
     },
   },
   blockExplorers: {
     default: {
-      name: "CelestiaScan",
-      url: "https://mocha.celestiascan.org",
+      name: "Polygonscan",
+      url: "https://polygonscan.com",
     },
   },
-  testnet: true,
 });
 
-export const FORMA_SKETCHPAD = defineChain({
-  id: 984123, // Replace with the actual ID for Forma Sketchpad
-  name: "Forma Sketchpad",
-  nativeCurrency: {
-    name: "FORMA",
-    symbol: "FORMA",
-    decimals: 18,
-  },
-  rpcUrls: {
-    default: {
-      http: ["https://rpc.sketchpad.forma.org"],
-    },
-  },
-  blockExplorers: {
-    default: {
-      name: "FormaScan",
-      url: "https://sketchpad.formascan.org",
-    },
-  },
-  testnet: true,
-});
-
-export const FORMASCAN_URL = "https://sketchpad.formascan.org";
-export const POLYGONSCAN_URL = "https://cardona-zkevm.polygonscan.com";
+export const POLYGONSCAN_URL = "https://polygonscan.com";
 
 export default createThirdwebClient(secretKey ? { secretKey } : { clientId });

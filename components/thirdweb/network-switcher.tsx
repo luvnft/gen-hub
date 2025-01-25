@@ -1,7 +1,7 @@
 "use client";
 
 import { useActiveWallet, useNetworkSwitcherModal } from "thirdweb/react";
-import client, {FORMA_SKETCHPAD, POLYGON_ZKEVM_CARDONA_TESTNET} from "@/lib/client";
+import client, { BASE_CHAIN, POLYGON_MAINNET } from "@/lib/client"; // Import BASE_CHAIN and POLYGON_MAINNET
 import { toast } from "sonner";
 import React from "react";
 import { ThirdwebButtonProps } from "@/type";
@@ -29,7 +29,7 @@ const NetworkSwitcher: React.FC<ThirdwebButtonProps> = ({
         sections: [
           {
             label: "Popular",
-            chains: [POLYGON_ZKEVM_CARDONA_TESTNET, FORMA_SKETCHPAD],
+            chains: [BASE_CHAIN, POLYGON_MAINNET], // Use BASE_CHAIN and POLYGON_MAINNET
           },
         ],
       })
